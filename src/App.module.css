@@ -1,3 +1,8 @@
-.App {
-  text-align: center;
+.app {
+  width: 96%;
+  margin: 0 auto;
+  margin-top: 5rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(160px, 1fr));
+  grid-gap: 1rem;
 }
