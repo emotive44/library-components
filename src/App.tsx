@@ -3,6 +3,7 @@ import classes from "./App.module.css";
 
 import Input from "./components/Input/Input";
 import TextArea from './components/TextArea/TextArea';
+import CheckBox from './components/CheckBox/CheckBox';
 
 function App() {
   return (
@@ -66,6 +67,12 @@ function App() {
           label='right label' 
           defaultValue='readonly + disabled' 
         />
+      </div>
+
+      <div style={{display: 'flex'}}>
+        <CheckBox label='male' />
+        <CheckBox label='female' leftLabel />
+        <CheckBox label='other'/>
       </div>
     </div>
   );
