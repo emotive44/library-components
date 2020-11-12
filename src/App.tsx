@@ -2,6 +2,7 @@ import React from "react";
 import classes from "./App.module.css";
 
 import Input from "./components/Input/Input";
+import TextArea from './components/TextArea/TextArea';
 
 function App() {
   return (
@@ -48,6 +49,23 @@ function App() {
       </div>
       <div>
         <Input type="search" placeHolder="search" leftIcon />
+      </div>
+
+      <div>
+        <TextArea placeHolder='placeholder' label='label top' />
+      </div>
+      <div>
+        <TextArea label='left label' labelLeft id='llabel' />
+      </div>
+      <div>
+        <TextArea 
+          readonly 
+          disabled 
+          nonResize 
+          labelRight 
+          label='right label' 
+          defaultValue='readonly + disabled' 
+        />
       </div>
     </div>
   );
