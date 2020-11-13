@@ -9,25 +9,27 @@ type InputType =
   | "text";
 
 interface InputProps {
-  id?: string;
-  err?: string;
-  icon?: ReactElement ;
-  name?: string;
-  step?: number;
-  label?: string;
-  type: InputType;
-  pattern?: string;
-  leftIcon?: boolean;
-  readonly?: boolean;
-  required?: boolean;
-  disabled?: boolean;
-  className?: string;
-  placeHolder?: string;
-  labelInside?: boolean;
-  defaultValue?: string | number;
+  name            : string;     //required props
+  type            : InputType;
+  value           : string | number;
+  callbackChange  : Function;
+  id              ?: string;
+  err             ?: string;
+  icon            ?: ReactElement;
+  step            ?: number;
+  label           ?: string;
+  pattern         ?: string;
+  leftIcon        ?: boolean;
+  readonly        ?: boolean;
+  required        ?: boolean;
+  disabled        ?: boolean;
+  className       ?: string;
+  placeHolder     ?: string;
+  labelInside     ?: boolean;
+  defaultValue    ?: string | number;
   // sizes
-  largeInput?: boolean;
-  mediumInput?: boolean;
+  largeInput      ?: boolean;
+  mediumInput     ?: boolean;
 }
 
 const Input: FC<InputProps> = ({
@@ -39,6 +41,8 @@ const Input: FC<InputProps> = ({
   icon, // for custom icon like icon={<i className="fas fa-user" />}
   label,
   pattern,
+  value,
+  callbackChange,
   leftIcon,
   readonly,
   required,
@@ -51,7 +55,6 @@ const Input: FC<InputProps> = ({
   defaultValue,
 }) => {
   const [isHover, setIsHover] = useState(false);
-  const [value, setValue] = useState<number | string>("");
   const [showPass, setShowPass] = useState(false);
   const [isIcon, setIsIcon] = useState(false);
 
@@ -84,15 +87,9 @@ const Input: FC<InputProps> = ({
     }
   };
 
-  const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(e.currentTarget.value);
-  };
-
   useEffect(() => {
-    defaultValue && setValue(defaultValue);
     if(type === 'email' || type === 'search' || icon) setIsIcon(true);
-    
-  }, [setValue, defaultValue, setIsIcon, type, icon]);
+  }, [setIsIcon, type, icon]);
 
   return (
     <>
@@ -124,21 +121,21 @@ const Input: FC<InputProps> = ({
         {label && <label className={labelClasses.join(' ')}>{label}</label>}
 
         <input
-          id={id}
-          name={name}
-          step={step}
-          value={value}
-          pattern={pattern} // the pattern have to be string like: pattern="[A-Z]+", instead new RegExp
-          readOnly={readonly}
-          required={required}
-          disabled={disabled}
-          type={showPass ? "text" : type}
-          className={inputClasses.join(' ')}
-          placeholder={label ? "" : placeHolder}
+          id            = {id}
+          name          = {name}
+          step          = {step}
+          value         = {defaultValue && !value ? defaultValue : value}
+          pattern       = {pattern} // the pattern have to be string like: pattern="[A-Z]+", instead new RegExp
+          readOnly      = {readonly}
+          required      = {required}
+          disabled      = {disabled}
+          type          = {showPass ? "text" : type}
+          className     = {inputClasses.join(' ')}
+          placeholder   = {label ? "" : placeHolder}
           //events
-          onBlur={blurHandler}
-          onClick={hoverHandler}
-          onChange={changeHandler}
+          onBlur        = {blurHandler}
+          onClick       = {hoverHandler}
+          onChange      = {(e) => callbackChange(e)}
         />
       </section>
       {err && <p className={classes.errmsg}>{err}</p>}

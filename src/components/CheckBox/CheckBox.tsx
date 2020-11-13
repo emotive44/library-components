@@ -1,25 +1,25 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import classes from './CheckBox.module.css';
 
 interface CheckBoxProps { 
-  id?: string;
-  name?: string;
-  label?: string;
-  leftLabel?: boolean;
+  callbackChange  : React.ChangeEventHandler<HTMLInputElement>;
+  checked         : boolean;
+  name            : string;
+  id              ?: string;
+  label           ?: string;
+  leftLabel       ?: boolean;
 }
 
 const CheckBox:FC<CheckBoxProps> = ({
   id,
   name,
   label,
+  checked,
   leftLabel,
+  callbackChange,
 }) => {
-  const [checked, setChecked] = useState(false);
-
   const labelClasses: string[] = [classes.label];
   if(leftLabel) labelClasses.push(classes.left);
-
-  const checkHandler = () => setChecked(!checked);
   
   return (
     <section className={classes.container}>
@@ -28,11 +28,11 @@ const CheckBox:FC<CheckBoxProps> = ({
         <div className={classes.wrapper}>
           <input 
             hidden
-            id={id} 
-            name={name}
-            type="checkbox" 
-            checked={checked}
-            onChange={checkHandler}
+            id           = {id} 
+            name         = {name}
+            checked      = {checked}
+            type         = "checkbox" 
+            onChange     = {callbackChange}
           />
           <span className={classes.checked} />
         </div>

@@ -20,4 +20,5 @@
   .label { width: 97%; font-size: 1.4rem; position: absolute; pointer-events: none; margin-bottom: 0.5rem; transition: 0.2s ease-in-out; bottom: -0.1rem; left: 0.7rem; transition-property: bottom, left, font-size; }
     .label.top {  left: 0.1rem; bottom: 1.9rem; }
   .inputtag { width: 100%; padding: 0.2rem; }
+  .inputtag[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; } /*remove default strokes */
   .errmsg { color: red; width: 99%; font-size: 1.3rem; margin: -0.5rem 0 0 0.2rem; }

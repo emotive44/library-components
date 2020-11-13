@@ -1,12 +1,14 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 import classes from './TextArea.module.css';
 
 
 interface TextAreaProps {
+  name         : string;
+  value        : string;
+  calbackChange: Function;
   id           ?: string;
   cols         ?: number;
   rows         ?: number;
-  name         ?: string;
   label        ?: string;
   nonResize    ?: boolean; 
   readonly     ?: boolean;
@@ -24,6 +26,7 @@ interface TextAreaProps {
 const TextArea: FC<TextAreaProps> = ({
   id,
   name,
+  value,
   cols,
   rows,
   label,
@@ -38,17 +41,8 @@ const TextArea: FC<TextAreaProps> = ({
   labelRight,
   placeHolder,
   defaultValue,
+  calbackChange,
 }) => {
-  const [value, setValue] = useState('');
-
-  useEffect(() => {
-    if(defaultValue) setValue(defaultValue);
-  }, [defaultValue, setValue]);
-
-  const changeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setValue(e.currentTarget.value);
-  }
-
   const containerClasses: string[] = [classes.container];
   if(labelLeft) containerClasses.push(classes.left);
   if(labelRight) containerClasses.push(classes.right);
@@ -66,7 +60,7 @@ const TextArea: FC<TextAreaProps> = ({
       name        = {name} 
       cols        = {cols} 
       rows        = {rows}
-      value       = {value}
+      value       = {defaultValue && !value ? defaultValue : value}
       readOnly    = {readonly}
       required    = {required}
       disabled    = {disabled}
@@ -74,7 +68,7 @@ const TextArea: FC<TextAreaProps> = ({
       maxLength   = {maxLength}
       placeholder = {placeHolder}
       className   = {textAreaClasses.join(' ')}
-      onChange    = {changeHandler}
+      onChange    = {(e) => calbackChange(e)}
     />
   </section>
 }
