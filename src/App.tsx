@@ -24,21 +24,24 @@ function App() {
     female      : false,
     other       : false,
   });
-
-  const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+ 
+  const inputChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
 
     setState(prev => ({
         ...prev,
         [name] : value,
     }));
+  }
 
-    if(e.currentTarget.type === 'checkbox') {
-      setState(prev => ({
-        ...prev,
-        [name]: e.target.checked,
-      }));
-    }
+
+  const checkBoxChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, checked } = e.target;
+
+    setState(prev => ({
+      ...prev,
+      [name]: checked,
+    }));
   }
 
   const submitHandler = () => {
@@ -56,7 +59,7 @@ function App() {
             type              = "number"
             value             = {state.age}
             err               = "error message"
-            callbackChange    = {changeHandler}
+            callbackChange    = {inputChangeHandler}
           />
         </div>
         <div>
@@ -70,7 +73,7 @@ function App() {
             pattern           = {"[A-Z]+"}
             value             = {state.name}
             err               = "error message"
-            callbackChange    = {changeHandler}
+            callbackChange    = {inputChangeHandler}
             icon              = {<i className="fas fa-user" />}
           />
         </div>
@@ -82,7 +85,7 @@ function App() {
             type              = "text" 
             value             = {state.job}
             defaultValue      = "programmer" 
-            callbackChange    = {changeHandler}
+            callbackChange    = {inputChangeHandler}
           />
         </div>
         <div>
@@ -93,7 +96,7 @@ function App() {
             type              = "number" 
             name              = "salary" 
             value             = {state.salary}
-            callbackChange    = {changeHandler}
+            callbackChange    = {inputChangeHandler}
           />
         </div>
         <div>
@@ -102,7 +105,7 @@ function App() {
             type              = "password" 
             label             = "password" 
             value             = {state.password}
-            callbackChange    = {changeHandler}
+            callbackChange    = {inputChangeHandler}
           />
         </div>
         <div>
@@ -113,7 +116,7 @@ function App() {
             type              = "email"  
             placeHolder       = "Email" 
             value             = {state.email}
-            callbackChange    = {changeHandler}
+            callbackChange    = {inputChangeHandler}
           />
         </div>
         <div>
@@ -123,7 +126,7 @@ function App() {
             type              = "email" 
             label             = "Email" 
             name              = "secondEmail"
-            callbackChange    = {changeHandler}
+            callbackChange    = {inputChangeHandler}
             value             = {state.secondEmail}
           />
         </div>
@@ -134,7 +137,7 @@ function App() {
             type              = "email" 
             label             = "Email"
             name              = "thirdEmail"
-            callbackChange    = {changeHandler} 
+            callbackChange    = {inputChangeHandler} 
             value             = {state.thirdEmail}
           />
         </div>
@@ -145,7 +148,7 @@ function App() {
             name              = "search"
             placeHolder       = "Search" 
             value             = {state.search}
-            callbackChange    = {changeHandler}
+            callbackChange    = {inputChangeHandler}
           />
         </div>
 
@@ -155,7 +158,7 @@ function App() {
             label             = "secondBio"
             value             = {state.bio}
             placeHolder       = "Bio" 
-            calbackChange     = {changeHandler}
+            calbackChange     = {inputChangeHandler}
           />
         </div>
         <div>
@@ -164,7 +167,7 @@ function App() {
             id                = "sBio"
             label             = "secondBio"
             name              = "secondBio"
-            calbackChange     = {changeHandler} 
+            calbackChange     = {inputChangeHandler} 
             value             = {state.secondBio}
           />
         </div>
@@ -176,7 +179,7 @@ function App() {
             labelRight 
             name              = "thirdBio"
             label             = "right Label" 
-            calbackChange     = {changeHandler}
+            calbackChange     = {inputChangeHandler}
             value             = {state.thirdBio}
             defaultValue      = "readonly + disabled" 
           />
@@ -187,20 +190,20 @@ function App() {
             name              = "male"
             label             = "Male"
             checked           = {state.male}
-            callbackChange    = {changeHandler}
+            callbackChange    = {checkBoxChangeHandler}
           />
           <CheckBox 
             leftLabel 
             name              = "female"
             label             = "Female"
             checked           = {state.female}
-            callbackChange    = {changeHandler}
+            callbackChange    = {checkBoxChangeHandler}
           />
           <CheckBox 
             name              = "other"
             label             = "Other"
             checked           = {state.other}
-            callbackChange    = {changeHandler}
+            callbackChange    = {checkBoxChangeHandler}
           />
         </div>
       </div>

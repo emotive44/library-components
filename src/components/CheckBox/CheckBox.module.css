@@ -4,5 +4,6 @@
     .label.left { flex-direction: row; }
     .label.left > span { margin-right: 0.7rem; }
   .wrapper { position: relative; display: flex; justify-content: center; align-items: center; width: 20px; height: 20px; background: transparent; border: 2px solid grey; border-radius: 5px; }
+    .wrapper.hover { border-color: black; }
     .checked { 	content: ""; width: 4px; height: 10px; margin-top: -2px; border-right: 2px solid black; border-bottom: 2px solid black; opacity: 0; transform: rotate(30deg); transition: .3s ease-in-out opacity; }
     input:checked + .checked { opacity: 1;}
