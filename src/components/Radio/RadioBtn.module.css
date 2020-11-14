@@ -1,0 +1,8 @@
+.label { margin: 0 5px; cursor: pointer; display: flex; flex-direction: row-reverse; }
+  .label.left { flex-direction: row; }
+  .label.left > span { margin-right: 1rem; }
+  .label > span { margin-left: 1rem; }
+  .wrapper { position: relative; display: flex; justify-content: center; align-items: center; width: 23px; height: 23px; background: transparent; border: 2px solid grey; border-radius: 50px; }
+  .wrapper.hover { border-color: black; transition: ease-in-out 0.3s border-color; }
+  .checked { content: ""; width: 9px; height: 9px; background-color: black; border-radius: 50px; opacity: 0; transition: .2s; }
+  input:checked + .checked { opacity: 1; }

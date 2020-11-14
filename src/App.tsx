@@ -4,6 +4,7 @@ import classes from "./App.module.css";
 import Input from "./components/Input/Input";
 import TextArea from './components/TextArea/TextArea';
 import CheckBox from './components/CheckBox/CheckBox';
+import RadioBtn from './components/Radio/RadioBtn';
 
 
 function App() {
@@ -23,8 +24,12 @@ function App() {
     male        : false,
     female      : false,
     other       : false,
+    radio1      : false,
+    radio2      : false,
   });
- 
+  const [radioValue, setRadioValue] = useState('radio1');
+  const radioBtns = { radio1: false, radio2: false }
+
   const inputChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
 
@@ -34,7 +39,6 @@ function App() {
     }));
   }
 
-
   const checkBoxChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = e.target;
 
@@ -42,6 +46,18 @@ function App() {
       ...prev,
       [name]: checked,
     }));
+  }
+
+  const radioBtnChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value, checked } = e.target;
+    
+    setState(prev => ({
+      ...prev,
+      ...radioBtns,
+      [name]: checked,
+    }));
+
+    setRadioValue(value);
   }
 
   const submitHandler = () => {
@@ -126,8 +142,8 @@ function App() {
             type              = "email" 
             label             = "Email" 
             name              = "secondEmail"
-            callbackChange    = {inputChangeHandler}
             value             = {state.secondEmail}
+            callbackChange    = {inputChangeHandler}
           />
         </div>
         <div>
@@ -137,9 +153,9 @@ function App() {
             type              = "email" 
             label             = "Email"
             name              = "thirdEmail"
-            callbackChange    = {inputChangeHandler} 
             value             = {state.thirdEmail}
-          />
+            callbackChange    = {inputChangeHandler} 
+            />
         </div>
         <div>
           <Input 
@@ -204,6 +220,24 @@ function App() {
             label             = "Other"
             checked           = {state.other}
             callbackChange    = {checkBoxChangeHandler}
+          />
+        </div>
+
+        <div style={{ display: 'flex' }}>
+          <RadioBtn 
+            leftLabel
+            name              = "radio1"
+            label             = "Radio1"
+            value             = "radio1"
+            callbackChange    = {radioBtnChangeHandler}
+            checked           = {radioValue === "radio1"}
+          />
+          <RadioBtn 
+            name              = "radio2"
+            label             = "Radio2"
+            value             = "radio2"
+            callbackChange    = {radioBtnChangeHandler}
+            checked           = {radioValue === "radio2"}
           />
         </div>
       </div>

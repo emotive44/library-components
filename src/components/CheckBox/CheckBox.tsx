@@ -29,17 +29,14 @@ const CheckBox:FC<CheckBoxProps> = ({
     <section className={classes.container}>
       <label htmlFor={id} className={labelClasses.join(' ')}>
         {label && 
-          (<span
-            onMouseEnter={() => setHover(true)} 
-            onMouseLeave={() => setHover(false)}
-          >
+          <span onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
             {label}
-          </span>) 
+          </span>
         }
         <div 
-          onMouseEnter={() => setHover(true)} 
-          onMouseLeave={() => setHover(false)}
-          className={wrapperClasses.join(' ')} 
+          onMouseEnter   ={() => setHover(true)} 
+          onMouseLeave   ={() => setHover(false)}
+          className      ={wrapperClasses.join(' ')} 
         >
           <input 
             hidden
