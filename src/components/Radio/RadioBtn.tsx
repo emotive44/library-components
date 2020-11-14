@@ -28,6 +28,7 @@ const RadioBtn: FC<RadioBtnProps> = ({
 
   const wrapperClasses: string[] = [classes.wrapper];
   if(hover) wrapperClasses.push(classes.hover);
+  if(checked) wrapperClasses.push(classes.check);
 
   return (
     <div>

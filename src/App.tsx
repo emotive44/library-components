@@ -5,6 +5,7 @@ import Input from "./components/Input/Input";
 import TextArea from './components/TextArea/TextArea';
 import CheckBox from './components/CheckBox/CheckBox';
 import RadioBtn from './components/Radio/RadioBtn';
+import Toggle from './components/Toggle/Toggle';
 
 
 function App() {
@@ -26,6 +27,8 @@ function App() {
     other       : false,
     radio1      : false,
     radio2      : false,
+    toggle1     : false,
+    toggle2     : false,
   });
   const [radioValue, setRadioValue] = useState('radio1');
   const radioBtns = { radio1: false, radio2: false }
@@ -201,7 +204,7 @@ function App() {
           />
         </div>
 
-        <div style={{ display: 'flex' }}>
+        <div className={classes.flex}>
           <CheckBox 
             name              = "male"
             label             = "Male"
@@ -223,7 +226,7 @@ function App() {
           />
         </div>
 
-        <div style={{ display: 'flex' }}>
+        <div className={classes.flex}>
           <RadioBtn 
             leftLabel
             name              = "radio1"
@@ -238,6 +241,22 @@ function App() {
             value             = "radio2"
             callbackChange    = {radioBtnChangeHandler}
             checked           = {radioValue === "radio2"}
+          />
+        </div>
+
+        <div className={classes.flex}>
+          <Toggle 
+            leftLabel
+            name              = "toggle1"
+            label             = "Toggle"
+            checked           = {state.toggle1}
+            callbackChange    = {checkBoxChangeHandler}
+          />
+          <Toggle 
+            name              = "toggle2"
+            label             = "Toggle"
+            checked           = {state.toggle2}
+            callbackChange    = {checkBoxChangeHandler}
           />
         </div>
       </div>
