@@ -6,6 +6,7 @@ import TextArea from './components/TextArea/TextArea';
 import CheckBox from './components/CheckBox/CheckBox';
 import RadioBtn from './components/Radio/RadioBtn';
 import Toggle from './components/Toggle/Toggle';
+import InfoBox from './components/InfoBox/InfoBox';
 
 
 function App() {
@@ -259,6 +260,10 @@ function App() {
             callbackChange    = {checkBoxChangeHandler}
           />
         </div>
+        <InfoBox title='Title'>
+          <h3>Subtitle</h3>
+          <p>Content</p>
+        </InfoBox>
       </div>
     </>
   );
