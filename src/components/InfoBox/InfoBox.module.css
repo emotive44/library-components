@@ -1,4 +1,4 @@
-.infobox { background: white; border: 1px solid gray; padding: 4px; border-radius: 3px; }
+.infobox { background: white; border: 1px solid gray; padding: 4px; border-radius: 3px; width: 100%; }
 	.infobox .title { background: lightgray; color: black; font-size: 1.9rem; font-weight: 700; text-align: center; padding: 8px 4px; border-radius: 3px 3px 0 0; }
 	.infobox .body { width: 100%; display: table; }
 		.infobox .body .cnt { height: 0.5rem; display: table-cell; color: gray; font-size: 16px; font-weight: bold; text-align: center; vertical-align: middle; word-break: break-word; padding: 4px; }

@@ -7,6 +7,7 @@ import CheckBox from './components/CheckBox/CheckBox';
 import RadioBtn from './components/Radio/RadioBtn';
 import Toggle from './components/Toggle/Toggle';
 import InfoBox from './components/InfoBox/InfoBox';
+import Divider from './components/Divider/Divider';
 
 
 function App() {
@@ -260,10 +261,27 @@ function App() {
             callbackChange    = {checkBoxChangeHandler}
           />
         </div>
+
         <InfoBox title='Title'>
           <h3>Subtitle</h3>
           <p>Content</p>
         </InfoBox>
+
+        <Divider title="Title" basicDivider />
+
+        <Divider icon={<i className="fas fa-user" />} basicDivider />
+
+        <Divider 
+          basicDivider 
+          imgSrc              = "https://static.thenounproject.com/png/1070843-200.png"
+        />
+      </div>
+      <div style={{ margin: '3rem 0' }}>
+        <Divider 
+          basicDivider 
+          longerLines
+          imgSrc              = "https://cdn.dribbble.com/users/46067/screenshots/446200/hr.png"
+        />
       </div>
     </>
   );

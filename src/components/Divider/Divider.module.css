@@ -1,0 +1,11 @@
+.divider { width: 100%; text-align: center; }
+  .divider::before, .divider::after { content: ""; display: inline-block; height: 1px; position: relative; vertical-align: middle; width: 40%; }
+  .divider::before { background: linear-gradient(to right, transparent, #818078); right: 1.5em; }
+  .divider::after { background: linear-gradient(to right, #818078, transparent); left: 1.5em;  }
+
+.dividerImg { width: 100%; height: 5rem; text-align: center; position: relative; bottom: 2rem; }
+  .dividerImg::before, .dividerImg::after { content: ""; display: inline-block; height: 2px; position: relative; vertical-align: middle; width: 30%; position: absolute; bottom: 0.5rem; }
+  .dividerImg.longer::before, .dividerImg.longer::after { width: 40%; }
+  .dividerImg::before { background: linear-gradient(to left, transparent, #818078); right: 0.1em; }
+  .dividerImg::after { background: linear-gradient(to left, #818078, transparent); left: 0.1em; }
+  .dividerImg img { height: 9rem; }
