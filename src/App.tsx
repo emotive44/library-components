@@ -8,7 +8,7 @@ import RadioBtn from './components/Radio/RadioBtn';
 import Toggle from './components/Toggle/Toggle';
 import InfoBox from './components/InfoBox/InfoBox';
 import Divider from './components/Divider/Divider';
-
+import Tooltip from './components/Tooltip/Tooltip';
 
 function App() {
   const [state, setState] = useState({
@@ -275,6 +275,24 @@ function App() {
           basicDivider 
           imgSrc              = "https://static.thenounproject.com/png/1070843-200.png"
         />
+
+        <Tooltip message="Tooltip message Tooltip message">
+          <p>Tooltip top</p>
+        </Tooltip>
+
+        <Tooltip position="left"  message="Tooltip message Tooltip message ">
+          <p>Tooltip left</p>
+        </Tooltip>
+
+        <Tooltip position="right"  message="Tooltip message Tooltip message Tooltip message Tooltip message Tooltip message ">
+          <p style={{textAlign: 'right'}}>Tooltip right</p>
+        </Tooltip>
+
+        <p></p>
+
+        <Tooltip position="bottom"  message="Tooltip message Tooltip message ">
+          <p>Tooltip bottom</p>
+        </Tooltip>
       </div>
       <div style={{ margin: '3rem 0' }}>
         <Divider 
