@@ -9,7 +9,7 @@ import Toggle from './components/Toggle/Toggle';
 import InfoBox from './components/InfoBox/InfoBox';
 import Divider from './components/Divider/Divider';
 import Tooltip from './components/Tooltip/Tooltip';
-import Spinner from './components/Spinner/Spinner';
+import Button from './components/Button/Button';
 
 function App() {
   const [state, setState] = useState({
@@ -295,11 +295,25 @@ function App() {
           <p>Tooltip bottom</p>
         </Tooltip>
 
-        <button>
-          <Spinner btnSpinner />
-          Button
-        </button>
+        <div className={classes.flex}>
+          <Button>Send Message</Button>
+          <Button type="secondary">Send Message</Button>
+          <Button type="success" outline>Send Message</Button>
+          <Button type="danger">Send Message</Button>
+        </div>
+
+        <div className={classes.flex}>
+          <Button type="warning">Send Message</Button>
+          <Button type="light">Send Message</Button>
+          <Button type="dark" loading>Send Message</Button>
+          <Button type="link" href="login" newBlank >Go to link</Button>
+        </div>
       </div>
+
+      <Button fullWidth>
+        Full width button
+      </Button>
+
       <div style={{ margin: '3rem 0' }}>
         <Divider 
           basicDivider 
