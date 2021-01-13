@@ -9,6 +9,7 @@ import Toggle from './components/Toggle/Toggle';
 import InfoBox from './components/InfoBox/InfoBox';
 import Divider from './components/Divider/Divider';
 import Tooltip from './components/Tooltip/Tooltip';
+import Spinner from './components/Spinner/Spinner';
 
 function App() {
   const [state, setState] = useState({
@@ -293,6 +294,11 @@ function App() {
         <Tooltip position="bottom"  message="Tooltip message Tooltip message ">
           <p>Tooltip bottom</p>
         </Tooltip>
+
+        <button>
+          <Spinner btnSpinner />
+          Button
+        </button>
       </div>
       <div style={{ margin: '3rem 0' }}>
         <Divider 
