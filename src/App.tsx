@@ -10,6 +10,7 @@ import InfoBox from './components/InfoBox/InfoBox';
 import Divider from './components/Divider/Divider';
 import Tooltip from './components/Tooltip/Tooltip';
 import Button from './components/Button/Button';
+import Avatar from './components/Avatar/Avatar';
 
 function App() {
   const [state, setState] = useState({
@@ -308,6 +309,18 @@ function App() {
           <Button type="dark" loading>Send Message</Button>
           <Button type="link" href="login" newBlank >Go to link</Button>
         </div>
+
+        <div className={classes.flex}>
+          <Avatar abbr="Marko" />
+          <Avatar abbr="Vildan" />
+          <Avatar abbr="Georgi" />
+          <Avatar abbr="Nikolay" />
+          <Avatar 
+            abbr               = "Marko"
+            image              = "https://scontent.fsof9-1.fna.fbcdn.net/v/t1.0-9/45359201_1776432789146396_8383390134426402816_n.jpg?_nc_cat=104&ccb=2&_nc_sid=09cbfe&_nc_ohc=v_bx88Op0_YAX9653kW&_nc_ht=scontent.fsof9-1.fna&oh=12e1d3afec812afb5a16ebfb488f1bcb&oe=6023D3E0" 
+          />
+        </div>
+      
       </div>
 
       <Button fullWidth>
