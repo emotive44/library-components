@@ -12,6 +12,8 @@ import Tooltip from './components/Tooltip/Tooltip';
 import Button from './components/Button/Button';
 import Avatar from './components/Avatar/Avatar';
 import Dots from './components/Dots/Dots';
+import Note from './components/Note/Note';
+
 
 function App() {
   const [state, setState] = useState({
@@ -332,6 +334,10 @@ function App() {
         >
           Some Text
         </Dots>
+     
+        <Note size={15} >
+          This is note
+        </Note>
 
       </div>
 
