@@ -308,7 +308,10 @@ function App() {
           <Button type="warning">Send Message</Button>
           <Button type="light">Send Message</Button>
           <Button type="dark" loading>Send Message</Button>
-          <Button type="link" href="login" newBlank >Go to link</Button>
+          <Button type="link" href="login" newBlank >
+            <i className="fas fa-user" />
+            Go to link
+          </Button>
         </div>
 
         <div className={classes.flex}>

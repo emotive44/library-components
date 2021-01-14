@@ -38,6 +38,7 @@ const Button: FC<ButtonProps> = ({
     mainClasses.push(className);
   }
 
+
   if (type) {
     switch (type) {
       case 'secondary':
@@ -84,14 +85,24 @@ const Button: FC<ButtonProps> = ({
     mainClasses.push(classes.outline);
   }
 
+  const linkClasses: string[] = [];
+  // check if want basic link or link like button
   if(type === 'link') {
+    linkClasses.push(classes.link);
+  } else {
+    linkClasses.push(...mainClasses, classes.btnLink);
+  }
+
+  if(href) {
     return (
       <Link 
-        className   = {classes.link}
+        className   = {linkClasses.join(' ')}
         to          = {href ? href : ''}
         target      = {newBlank ? '_blank' : ''}
       >
-        {children}
+        <div className={classes.childrenContainer}>
+          {children}
+        </div>
       </Link>
     )
   }
