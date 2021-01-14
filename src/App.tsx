@@ -11,6 +11,7 @@ import Divider from './components/Divider/Divider';
 import Tooltip from './components/Tooltip/Tooltip';
 import Button from './components/Button/Button';
 import Avatar from './components/Avatar/Avatar';
+import Dots from './components/Dots/Dots';
 
 function App() {
   const [state, setState] = useState({
@@ -321,6 +322,14 @@ function App() {
           />
         </div>
       
+        <Dots 
+          count                =  {4} 
+          dotSize              =  {5}
+          dotColor             =  '#b6babd'
+        >
+          Some Text
+        </Dots>
+
       </div>
 
       <Button fullWidth>

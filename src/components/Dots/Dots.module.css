@@ -1,0 +1,4 @@
+.container { display: flex; align-items: center; }
+  .children { position: relative; }
+  .dots { display: flex; position: absolute; bottom: 3.5px; }
+  .dot { margin-right: 3px; border-radius: 100%; }
