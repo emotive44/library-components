@@ -13,6 +13,7 @@ import Button from './components/Button/Button';
 import Avatar from './components/Avatar/Avatar';
 import Dots from './components/Dots/Dots';
 import Note from './components/Note/Note';
+import NotFound from './components/NotFound/NotFound';
 
 
 function App() {
@@ -352,6 +353,14 @@ function App() {
           imgSrc              = "https://cdn.dribbble.com/users/46067/screenshots/446200/hr.png"
         />
       </div>
+
+      <NotFound 
+        title                 = "Not Found Page" 
+        message               = "Some message" 
+        icon                  = {<i className="fas fa-user" />}
+      >
+          <div>Children Content</div>
+      </NotFound>
     </>
   );
 }

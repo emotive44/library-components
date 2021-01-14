@@ -1,0 +1,6 @@
+.nofound { background-color: rgba(56, 95, 135, 0.1); font-size: 14px; text-align: center; padding: 16px; border-radius: 3px; }
+	.nofound h2 { font-size: 15px; font-weight: 500; margin: 0; padding: 0; }
+	.nofound .message { font-size: 13px; font-weight: 300; margin-top: 8px; }
+		.nofound .message.nom { margin-top: 0; }
+  .nofound .mtop { margin-top: 16px; }
+  .nofound .icon { font-size: 28px; margin-bottom: 8px; }
