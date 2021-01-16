@@ -14,6 +14,7 @@ import Avatar from './components/Avatar/Avatar';
 import Dots from './components/Dots/Dots';
 import Note from './components/Note/Note';
 import NotFound from './components/NotFound/NotFound';
+import Accordion from './components/Accordion/Accordion';
 
 
 function App() {
@@ -339,6 +340,39 @@ function App() {
         <Note size={15} >
           This is note
         </Note>
+
+        <p>-</p>
+
+        <Accordion>
+          <div title = 'First Title'>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam, culpa.</p>
+            <p>Lorem ipsum dolor sit amet.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae?</p>
+          </div>
+          <div title = 'Second Title'>
+            <div>Some text</div>
+            <div>Some text</div>
+            <div>Some text</div>
+            <div>Some text</div>
+            <div>Some text</div>
+          </div>
+          <div title = 'Third Title'>
+            <i className="fas fa-user" />
+            <span style={{ marginLeft: '1rem' }} >Some text</span>
+          </div>
+        </Accordion>
+
+        
+        <Accordion multipleOpen>
+          <div title = 'Multi open'>
+            <p>Multi open</p>
+          </div>
+          <div title = 'Second Title'>
+            <div>Some text</div>
+            <div>Some text</div>
+            <div>Some text</div>
+          </div>
+        </Accordion>
 
       </div>
 
