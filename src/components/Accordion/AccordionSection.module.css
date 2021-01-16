@@ -1,8 +1,14 @@
 .section { border: 1px solid black; margin-bottom: 0.4rem; border-radius: 4px; overflow: hidden; }
+  .section.horizontal-section { display: flex; margin-right: 0.5rem; }
+    .section.horizontal-section .title { justify-content: center; width: 4rem; position: relative; display: flex; flex-direction: column; }
+    .section.horizontal-section .title.title-open { border-bottom: none; border-right: 1px solid black; background: lightgray; }
+      .section.horizontal-section .title p { writing-mode: vertical-rl; transform: rotate(180deg); } 
+    .section.horizontal-section .horizontal-children { overflow: hidden; transition: 0.8s ease-in-out; transition-property: margin max-width; }
+
   .section .title { display: flex; justify-content: space-between; vertical-align: middle; padding: 0.5rem; cursor: pointer; transition: 0.2s ease-in background-color; }
     .section .title:hover { background-color: lightgray; }
-  .section .title.title-open { border-bottom: 1px solid black; background: lightgray; }
-  .section .title .arrow { color: black; margin-right: 0.3rem; font-size: 15px; display: flex; align-items: center; }
-    .arrow .open { transition: 0.4s ease-in-out; transform: rotate(180deg); }
-    .arrow .close { transition: 0.4s ease-in-out; transform: rotate(0deg); }
+    .section .title.title-open { border-bottom: 1px solid black; background: lightgray; }
+    .section .title .arrow { color: black; margin-right: 0.3rem; font-size: 15px; display: flex; align-items: center; }
+      .section .title .arrow .open { transition: 0.4s ease-in-out; transform: rotate(180deg); }
+      .section .title .arrow .close { transition: 0.4s ease-in-out; transform: rotate(0deg); }
   .section .children { margin: 0.5rem 1rem; overflow: hidden; transition: 0.7s ease-in-out; transition-property: max-height margin-top; }

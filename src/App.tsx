@@ -362,7 +362,6 @@ function App() {
           </div>
         </Accordion>
 
-        
         <Accordion multipleOpen>
           <div title = 'Multi open'>
             <p>Multi open</p>
@@ -375,6 +374,20 @@ function App() {
         </Accordion>
 
       </div>
+
+       
+       <div style={{ width: '90%', marginLeft: '2.4rem', height: '20rem' }}>
+        <Accordion horizontal maxWidth={40}>
+          <div title = 'Multi open'>
+            <p>Multi open Multi open</p>
+          </div>
+          <div title = 'Second Title'>
+            <div>Some text sa djasdj oaisdj saoid jaosidj aosidji aod a</div>
+            <div>Some text</div>
+            <div>Some text</div>
+          </div>
+        </Accordion>
+       </div>
 
       <Button fullWidth>
         Full width button

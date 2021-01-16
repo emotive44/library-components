@@ -18,11 +18,15 @@ interface IChildProps {
 interface AccordionProps {
   multipleOpen?: boolean,
   className?: string,
+  maxWidth?: number, // if you want to specify with for horizontal accordion
+  horizontal?: boolean,
 }
 
 const Accordion: FC<AccordionProps> = ({
   children,
   className,
+  maxWidth,
+  horizontal,
   multipleOpen,
 }) => {
   const [state, setState] = useState<IState>({});
@@ -39,13 +43,19 @@ const Accordion: FC<AccordionProps> = ({
     })
   }, [children]);
 
-  const accordionClasses = [classes.accordion];
+  const accordionClasses: string[] = [];
   if (className) {
     accordionClasses.push(className);
   }
 
+  if(horizontal) {
+    accordionClasses.push(classes['horizontal-accordion']);
+  } else {
+    accordionClasses.push(classes['vertical-accordion']);
+  }
+
   const clickHandler = (title: string) => {
-    if(multipleOpen) {
+    if(multipleOpen && !horizontal) {
       setState(prev => ({
         ...prev,
         [title]: !state[title],
@@ -58,15 +68,17 @@ const Accordion: FC<AccordionProps> = ({
   }
 
   return (
-    <div className={accordionClasses.join(' ')} >
+    <div className={accordionClasses.join(' ')}>
       {React.Children.map(children as IChildProps[], (child: IChildProps) => {
         const { title } = child?.props;
        
         return (
           <AccordionSection
             title           = {title}
+            horizontal      = {horizontal}
             isOpen          = {state[title]}
             clickHandler    = {clickHandler}
+            maxWidth        = {maxWidth || 30}
           >
             {child.props.children}
           </AccordionSection>

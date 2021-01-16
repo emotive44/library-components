@@ -5,6 +5,8 @@ import classes from './AccordionSection.module.css';
 interface AccordionSectionProps {
   title: string,
   isOpen?: boolean,
+  maxWidth?: number,
+  horizontal?: boolean,
   clickHandler: (title: string) => void,
 }
 
@@ -12,6 +14,8 @@ const AccordionSection: FC<AccordionSectionProps> = ({
   title,
   isOpen,
   children,
+  maxWidth,
+  horizontal,
   clickHandler,
 }) => {
   const childrenRef = useRef(null);
@@ -35,26 +39,56 @@ const AccordionSection: FC<AccordionSectionProps> = ({
     }
   }
 
+  const childrenClasses: string[] = [];
+  const classesSection = [classes.section]
+  if(horizontal) {
+    classesSection.push(classes['horizontal-section']);
+    childrenClasses.push(classes['horizontal-children']);
+  } else {
+    childrenClasses.push(classes.children);
+  }
+    
   return (
-    <div className={classes.section}>
-      <div onClick={onClick}>
+    <div className={classesSection.join(' ')}>
+      <div onClick={onClick} style={{display: `${horizontal && 'flex'}`}} >
         <div className={titleClasses.join(' ')}>
           <p> {title} </p>
-          <div className={classes.arrow}>
-            <i className={arrowClasses.join(' ')} />
-          </div>
+          {/* for horizontal, don't need a arrow */}
+          {!horizontal && (
+            <div className={classes.arrow}>
+              <i className={arrowClasses.join(' ')} />
+            </div>
+          )}
         </div>
       </div>
-      <div 
-        className={classes.children} 
-        ref={childrenRef } 
-        style={{
-          maxHeight: `${isOpen ? `${height}px` : '0px'}`,
-          marginTop: `${!isOpen ? '-0.5rem' : '0'}`
-        }}
-      >
-        {children} 
-      </div>
+
+      {/* for horizontal children */}
+      {horizontal && (
+        <div 
+          ref={childrenRef } 
+          className={childrenClasses.join(' ')} 
+          style= {{
+            maxWidth: `${horizontal && isOpen ? `${maxWidth}rem` : '0px'}`,
+            margin: `${horizontal && !isOpen ? '0.5rem 0' : '0.5rem 1rem'}`
+          }}
+        >
+          {children} 
+        </div>
+      )} 
+
+      {/* for vertical children */}
+      {!horizontal && (
+        <div 
+          ref={childrenRef } 
+          className={childrenClasses.join(' ')} 
+          style= {{
+            maxHeight: `${isOpen ? `${height}px` : '0px'}`,
+            marginTop: `${!isOpen ? '-0.5rem' : '0'}`,
+          }}
+        >
+          {children} 
+        </div>
+      )} 
     </div>
   );
 }
