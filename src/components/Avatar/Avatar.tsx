@@ -2,13 +2,14 @@ import React, { FC } from 'react';
 
 import classes from './Avatar.module.css';
 
+
 type Letter = 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G' | 'H' | 'I' | 'G' | 'K' | 'L' | 'M' | 'N' | 'O' | 'P' | 'Q' | 'R' | 'S' | 'T' | 'U' | 'V' | 'W' | 'X' | 'Y' | 'Z';
 
 interface AvatarProps {
-  abbr: string,
-  image?: string,
-  size?: 'small' | 'medium' | 'large',
-  className?: string,
+  abbr          : string,
+  image         ?: string,
+  size          ?: 'small' | 'medium' | 'large',
+  className     ?: string,
 }
 
 const Avatar: FC<AvatarProps> = ({

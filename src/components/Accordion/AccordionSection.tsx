@@ -3,12 +3,12 @@ import classes from './AccordionSection.module.css';
 
 
 interface AccordionSectionProps {
-  title: string,
-  isOpen?: boolean,
-  maxWidth?: number,
-  sectionHeight?: number,
-  horizontal?: boolean,
-  clickHandler: (title: string) => void,
+  title               : string,
+  isOpen              ?: boolean,
+  maxWidth            ?: number,
+  sectionHeight       ?: number,
+  horizontal          ?: boolean,
+  clickHandler        : (title: string) => void,
 }
 
 const AccordionSection: FC<AccordionSectionProps> = ({

@@ -4,8 +4,8 @@ import classes from './Note.module.css';
 
 
 interface NoteProps {
-  className?: string,
-  size?: number,  // fontSize in px
+  className   ?: string,
+  size        ?: number,  // fontSize in px
 }
 
 const Note: FC<NoteProps> = ({ className, children, size }) => { 

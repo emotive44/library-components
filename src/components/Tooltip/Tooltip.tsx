@@ -4,8 +4,8 @@ import classes from './Tooltip.module.css';
 
 
 interface TooltipProps {
-  message: any,
-  position?: 'left' | 'right' | 'top' | 'bottom',
+  message   : any,
+  position  ?: 'left' | 'right' | 'top' | 'bottom',
 }
 
 const Tooltip: FC<TooltipProps> = ({

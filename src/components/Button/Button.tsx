@@ -6,16 +6,16 @@ import Spinner from '../Spinner/Spinner';
 
 
 interface ButtonProps {
-  type?: 'secondary' | 'success' | 'danger' | 'warning' | 'dark' | 'light' | 'link',
-  size?: 'small' | 'medium' | 'large',
-  href?: string, // url link
-  newBlank?: boolean, // if want open url link at new page
-  className?: string,
-  outline?: boolean, // if want button to be with transparent background
-  callback?: () => any,
-  disabled?: boolean,
-  loading?: boolean,
-  fullWidth?: boolean,
+  type          ?: 'secondary' | 'success' | 'danger' | 'warning' | 'dark' | 'light' | 'link',
+  size          ?: 'small' | 'medium' | 'large',
+  href          ?: string, // url link
+  newBlank      ?: boolean, // if want open url link at new page
+  className     ?: string,
+  outline       ?: boolean, // if want button to be with transparent background
+  callback      ?: () => any,
+  disabled      ?: boolean,
+  loading       ?: boolean,
+  fullWidth     ?: boolean,
 }
 
 const Button: FC<ButtonProps> = ({

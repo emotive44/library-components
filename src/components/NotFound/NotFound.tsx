@@ -3,9 +3,9 @@ import classes from './NotFound.module.css';
 
 
 interface NotFoundProps {
-  title: string,
-  message?: string,
-  icon?: ReactElement,
+  title       : string,
+  message     ?: string,
+  icon        ?: ReactElement,
 }
 
 const NoFound: FC<NotFoundProps> = ({

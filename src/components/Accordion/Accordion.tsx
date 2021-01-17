@@ -10,17 +10,17 @@ interface IState {
 
 interface IChildProps {
   props: {
-    title: string,
-    children: React.ReactNode,
+    title             : string,
+    children          : React.ReactNode,
   },
 }
 
 interface AccordionProps {
-  multipleOpen?: boolean,
-  className?: string,
-  maxWidth?: number, // if you want to specify width for horizontal accordion
-  sectionHeight?: number, // if you want to specify height for horizontal accordion
-  horizontal?: boolean,
+  multipleOpen        ?: boolean,
+  className           ?: string,
+  maxWidth            ?: number, // if you want to specify width for horizontal accordion
+  sectionHeight       ?: number, // if you want to specify height for horizontal accordion
+  horizontal          ?: boolean,
 }
 
 const Accordion: FC<AccordionProps> = ({

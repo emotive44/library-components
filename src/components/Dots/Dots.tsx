@@ -4,10 +4,10 @@ import classes from './Dots.module.css';
 
 
 interface DotsProps {
-  count: number, // count of dots
-  dotColor: string,
-  dotSize: number,
-  className?: string,
+  count         : number, // count of dots
+  dotColor      : string,
+  dotSize       : number,
+  className     ?: string,
 }
 
 const Dots: FC<DotsProps> = ({
