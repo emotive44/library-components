@@ -16,6 +16,7 @@ import Note from './components/Note/Note';
 import NotFound from './components/NotFound/NotFound';
 import Accordion from './components/Accordion/Accordion';
 import Text from './components/Text/Text';
+import Notification from './components/Notification/Notification';
 
 
 function App() {
@@ -374,6 +375,22 @@ function App() {
           </div>
         </Accordion>
 
+        <Accordion 
+                                  // check for size of window, like media query 
+          maxWidth             = {window.innerWidth > 800 ? 40 : 11} 
+          sectionHeight        = {15} 
+          horizontal 
+        >
+          <div title = 'Multi open'>
+            <p>Multi open Multi open</p>
+          </div>
+          <div title = 'Second Title'>
+            <div>Some text sa djasdj oaisdj saoid jaosidj aosidji aod a</div>
+            <div>Some text</div>
+            <div>Some text</div>
+          </div>
+        </Accordion>
+
         <Text
           fontSize             = {18}
           lineHeight           = {30}
@@ -392,19 +409,14 @@ function App() {
 
       </div>
 
-       
-       <div style={{ width: '90%', marginLeft: '2.4rem'}}>
-        <Accordion horizontal maxWidth={40} sectionHeight={15} >
-          <div title = 'Multi open'>
-            <p>Multi open Multi open</p>
-          </div>
-          <div title = 'Second Title'>
-            <div>Some text sa djasdj oaisdj saoid jaosidj aosidji aod a</div>
-            <div>Some text</div>
-            <div>Some text</div>
-          </div>
-        </Accordion>
-       </div>
+      <Notification
+        type                  = "warning"
+        title                 = "Warning"
+        position              = "bottom-left"
+        message               = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, earum."
+        autoClose
+        secondsDelay          = {3}
+      />
 
       <Button fullWidth>
         Full width button
