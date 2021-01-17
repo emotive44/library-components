@@ -18,7 +18,8 @@ interface IChildProps {
 interface AccordionProps {
   multipleOpen?: boolean,
   className?: string,
-  maxWidth?: number, // if you want to specify with for horizontal accordion
+  maxWidth?: number, // if you want to specify width for horizontal accordion
+  sectionHeight?: number, // if you want to specify height for horizontal accordion
   horizontal?: boolean,
 }
 
@@ -28,6 +29,7 @@ const Accordion: FC<AccordionProps> = ({
   maxWidth,
   horizontal,
   multipleOpen,
+  sectionHeight,
 }) => {
   const [state, setState] = useState<IState>({});
 
@@ -79,6 +81,7 @@ const Accordion: FC<AccordionProps> = ({
             isOpen          = {state[title]}
             clickHandler    = {clickHandler}
             maxWidth        = {maxWidth || 30}
+            sectionHeight   = {sectionHeight || 20}
           >
             {child.props.children}
           </AccordionSection>

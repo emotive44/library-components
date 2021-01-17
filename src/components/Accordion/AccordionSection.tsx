@@ -6,6 +6,7 @@ interface AccordionSectionProps {
   title: string,
   isOpen?: boolean,
   maxWidth?: number,
+  sectionHeight?: number,
   horizontal?: boolean,
   clickHandler: (title: string) => void,
 }
@@ -16,6 +17,7 @@ const AccordionSection: FC<AccordionSectionProps> = ({
   children,
   maxWidth,
   horizontal,
+  sectionHeight,
   clickHandler,
 }) => {
   const childrenRef = useRef(null);
@@ -69,6 +71,7 @@ const AccordionSection: FC<AccordionSectionProps> = ({
           className={childrenClasses.join(' ')} 
           style= {{
             maxWidth: `${horizontal && isOpen ? `${maxWidth}rem` : '0px'}`,
+            height: `${sectionHeight}rem`,
             margin: `${horizontal && !isOpen ? '0.5rem 0' : '0.5rem 1rem'}`
           }}
         >

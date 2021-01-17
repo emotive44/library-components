@@ -15,6 +15,7 @@ import Dots from './components/Dots/Dots';
 import Note from './components/Note/Note';
 import NotFound from './components/NotFound/NotFound';
 import Accordion from './components/Accordion/Accordion';
+import Text from './components/Text/Text';
 
 
 function App() {
@@ -373,11 +374,27 @@ function App() {
           </div>
         </Accordion>
 
+        <Text
+          fontSize             = {18}
+          lineHeight           = {30}
+          textIndent           = {20}
+          wordSpacing          = {10}
+          letterSpacing        = {10}
+          color                = 'red'
+          verticalAlign        = "top"
+          fontWeight           = "900"
+          textAlign            = "right"
+          textTransform        = 'uppercase'
+          textDecoration       = {['line-through', 'overline', 'underline']}
+        >
+          text component
+        </Text>
+
       </div>
 
        
-       <div style={{ width: '90%', marginLeft: '2.4rem', height: '20rem' }}>
-        <Accordion horizontal maxWidth={40}>
+       <div style={{ width: '90%', marginLeft: '2.4rem'}}>
+        <Accordion horizontal maxWidth={40} sectionHeight={15} >
           <div title = 'Multi open'>
             <p>Multi open Multi open</p>
           </div>
