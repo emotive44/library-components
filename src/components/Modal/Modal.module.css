@@ -3,10 +3,7 @@
   .modal .header .header-wrapper { flex: 1 1 90%; }
   .modal .header .close i { font-size: 30px; color: gray; margin-left: 0.5rem; cursor: pointer; transition: 0.2s ease-in-out color; }
     .modal .header .close i:hover { color: black; }
-  .modal .main { flex: 1 0 50%; padding: 1rem 2rem; min-height: 10rem; max-height: 35rem; overflow-y: auto; margin-right: 0.2rem; }
-    .modal .main::-webkit-scrollbar { width: 9px; }
-    .moda .main::-webkit-scrollbar-track { border-radius: 10px; box-shadow: inset 0 0 5px grey; margin: 0 30px; }
-    .modal .main::-webkit-scrollbar-thumb { border-radius: 10px; background: grey; }
+  .modal .main { flex: 1 0 50%; padding: 1rem 2rem; min-height: 10rem; max-height: 35rem; margin-right: 0.2rem; }
   .modal .footer { border-top: 1px solid gray; padding: 1rem 0.5rem; }
   .overlay {background: lightgray; opacity: 0.7; visibility: visible; position: fixed; left: 0; top: 0; right: 0; bottom: 0; z-index: 29; transition: 1s ease-in-out; transition-property: opacity visibility; }
   .modal.closed { opacity: 0; visibility: hidden; }

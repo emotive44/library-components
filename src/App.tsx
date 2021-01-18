@@ -18,6 +18,7 @@ import Accordion from './components/Accordion/Accordion';
 import Text from './components/Text/Text';
 import Notification from './components/Notification/Notification';
 import Modal from './components/Modal/Modal';
+import CustomScroll from './components/CustomScroll/CustomScroll';
 
 
 function App() {
@@ -442,6 +443,15 @@ function App() {
         >
           text component
         </Text>
+
+        <CustomScroll size="small" >
+          <div style={{ height: '6rem', width: '5rem', margin: '0 auto'}}>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+          </div>
+        </CustomScroll>
 
       </div>
 

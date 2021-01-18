@@ -1,6 +1,8 @@
 import React, { FC, ReactElement, useState } from 'react';
 import classes from './Modal.module.css';
+
 import Text from '../Text/Text';
+import CustomScroll from '../CustomScroll/CustomScroll';
 
 
 interface ModalProps {
@@ -38,7 +40,9 @@ const Modal:FC<ModalProps> = ({
         </span>
       </header>
 
-      <main className={classes.main}> {main} </main>
+      <CustomScroll size="small">
+        <main className={classes.main}> {main} </main>
+      </CustomScroll>
 
       <footer className={classes.footer}> {footer} </footer>
 
