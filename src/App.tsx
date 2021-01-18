@@ -17,6 +17,7 @@ import NotFound from './components/NotFound/NotFound';
 import Accordion from './components/Accordion/Accordion';
 import Text from './components/Text/Text';
 import Notification from './components/Notification/Notification';
+import Modal from './components/Modal/Modal';
 
 
 function App() {
@@ -77,8 +78,43 @@ function App() {
   const submitHandler = () => {
     console.log(state);
   }
+
+  const ModalFooter = (
+    <div style={{display: 'flex', justifyContent: 'space-between'}}>
+      <div>Modal Footer</div>
+      <Button>Send</Button>
+    </div>
+  );
+
+  const ModalMain = (
+    <div>
+      <p>Custom Modal Main Content Custom Modal Main Content Custom Modal Main Content</p>
+      <p>Custom Modal Main Content</p>
+      <p>Custom Modal Main Content</p>
+      <p>Custom Modal Main Content</p>
+      <p>Custom Modal Main Content</p>
+      <p>Custom Modal Main Content</p>
+      <p>Custom Modal Main Content</p>
+      <p>Custom Modal Main Content</p>
+      <p>Custom Modal Main Content</p>
+      <p>Custom Modal Main Content</p>
+      <p>Custom Modal Main Content</p>
+      <p>Custom Modal Main Content</p>
+      <p>Custom Modal Main Content</p>
+      <p>Custom Modal Main Content</p>
+      <p>Custom Modal Main Content</p>
+      <p>Custom Modal Main Content</p>
+    </div>
+  );
+
   return (
     <>
+      <Modal 
+        main                  = {ModalMain}
+        title                 = "Modal Title"
+        footer                = {ModalFooter}
+      />
+    
       <span onClick={submitHandler}>Submit</span>
       <div className={classes.app}>
         <div>
