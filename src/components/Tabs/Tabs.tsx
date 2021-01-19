@@ -12,7 +12,7 @@ interface IChildProps {
   },
 }
 
-type TPosition = 'top' | 'bottom';
+type TPosition = 'top' | 'bottom' | 'left' | 'right';
 
 interface TabsProps {
   children              :  any,
@@ -82,7 +82,7 @@ const Tabs:FC<TabsProps> = ({
             {icon}
           </small>
         )}
-        {tabName && tabName}
+        {tabName && <p>{tabName}</p>}
       </NavLink>
     )
   })
@@ -90,7 +90,7 @@ const Tabs:FC<TabsProps> = ({
   return (
     <div className={containerClasses.join(' ')}>
       <div className={classes.tabs}> {tabs} </div>
-      <div className={classes.content}  >{tabContent}</div>
+      <div className={classes.content}> {tabContent} </div>
     </div>
   );
 }

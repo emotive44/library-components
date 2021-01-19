@@ -456,32 +456,62 @@ function App() {
 
       </div>
 
-     <div style={{ width: '40%', margin: '0 auto' }} >
-      <Tabs position="top">
-        <Tab 
-          label="tabname1"
-          tabName="Tabname1" 
-          icon={<i className="fas fa-user" />}
-        >
-            <p>Tabname 1 Content</p>
-            <p>1111</p>
-        </Tab>
-        <Tab 
-          label="tabname-user"
-          icon={<i className="fas fa-user" />}
-        >
-            <p>Tabname 2 Content</p>
-            <p>2222</p>
-        </Tab>
-        <Tab 
-          label="tabname3"
-          tabName="Tabname3"
-        >
-            <p>Tabname 3 Content</p>
-            <p>3333</p>
-        </Tab>
-      </Tabs>
-     </div>
+      <div style={{ width: '40%', margin: '0.5rem auto' }} >
+        <Tabs position="top">
+          <Tab 
+            label="tabname1"
+            tabName="Tabname1" 
+            icon={<i className="fas fa-user" />}
+          >
+              <p>Tabname 1 Content</p>
+              <p>1111</p>
+          </Tab>
+          <Tab 
+            label="tabname-user"
+            icon={<i className="fas fa-user" />}
+          >
+              <p>Tabname 2 Content</p>
+              <p>2222</p>
+          </Tab>
+          <Tab 
+            label="tabname3"
+            tabName="Tabname3"
+          >
+              <p>Tabname 3 Content</p>
+              <p>3333</p>
+          </Tab>
+        </Tabs>
+      </div>
+
+      <div style={{ width: '70%', margin: '1rem auto', height: '30rem'}} >
+        <Tabs position="right">
+          <Tab 
+            label="tab1"
+            tabName="Tabname1 ds dfdsf sdf fsd " 
+            icon={<i className="fas fa-user" />}
+          >
+              <p>Tabname 1 Content</p>
+              <p>1111</p>
+          </Tab>
+          <Tab 
+            label="tab-user"
+            tabName="Tabname two" 
+            icon={<i className="fas fa-user" />}
+          >
+              <p>Tabname 2 Content</p>
+              <p>2222</p>
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam iure nobis, dolore aliquid dolorum necessitatibus tempora numquam, earum sint accusantium, ducimus molestias quisquam quaerat ea asperiores temporibus ut adipisci veritatis optio. Ipsa numquam illo nobis voluptates perferendis, in temporibus illum nihil culpa consectetur iusto cupiditate esse eos voluptatum earum? Eum ut obcaecati dolor. Architecto laborum iste animi libero quas magnam.
+          </Tab>
+          <Tab 
+            label="tab3"
+            tabName="Tabname thee" 
+            icon={<i className="fas fa-user" />}
+          >
+              <p>Tabname 3 Content</p>
+              <p>3333</p>
+          </Tab>
+        </Tabs>
+      </div>
 
       <Notification
         type                  = "warning"
