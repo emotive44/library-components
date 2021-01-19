@@ -19,6 +19,7 @@ import Text from './components/Text/Text';
 import Notification from './components/Notification/Notification';
 import Modal from './components/Modal/Modal';
 import CustomScroll from './components/CustomScroll/CustomScroll';
+import { Tabs, Tab } from './components/Tabs';
 
 
 function App() {
@@ -110,11 +111,11 @@ function App() {
 
   return (
     <>
-      <Modal 
+      {/* <Modal 
         main                  = {ModalMain}
         title                 = "Modal Title"
         footer                = {ModalFooter}
-      />
+      /> */}
     
       <span onClick={submitHandler}>Submit</span>
       <div className={classes.app}>
@@ -454,6 +455,33 @@ function App() {
         </CustomScroll>
 
       </div>
+
+     <div style={{ width: '40%', margin: '0 auto' }} >
+      <Tabs position="top">
+        <Tab 
+          label="tabname1"
+          tabName="Tabname1" 
+          icon={<i className="fas fa-user" />}
+        >
+            <p>Tabname 1 Content</p>
+            <p>1111</p>
+        </Tab>
+        <Tab 
+          label="tabname-user"
+          icon={<i className="fas fa-user" />}
+        >
+            <p>Tabname 2 Content</p>
+            <p>2222</p>
+        </Tab>
+        <Tab 
+          label="tabname3"
+          tabName="Tabname3"
+        >
+            <p>Tabname 3 Content</p>
+            <p>3333</p>
+        </Tab>
+      </Tabs>
+     </div>
 
       <Notification
         type                  = "warning"

@@ -8,4 +8,4 @@ a,
 button,
 input,
 textarea,
-select { outline: none !important; text-decoration: none !important; }
+select { outline: none !important; text-decoration: none !important; color: black; }

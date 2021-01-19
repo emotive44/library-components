@@ -1,0 +1,13 @@
+.container { margin: 0.5rem; display: flex; }
+  .container.top { flex-direction: column; }
+  .container.bottom { flex-direction: column-reverse; }
+  .container .tabs { display: flex; justify-content: space-around; border: 1.2px solid gray; border-radius: 5px; }
+    .container .tabs .tab-link { display: flex; align-items: center; justify-content: center; min-width: 15%; padding: 0.5rem; border: 3px solid transparent; transition: 0.2s ease-in-out; transition-property: color background; }
+    .container.bottom .tabs .tab-link { border-top: 3px solid transparent; }
+    .container.top .tabs .tab-link { border-bottom: 3px solid transparent; }
+      .container .tabs .tab-link:hover { color: #05c1ff; background: rgb(247, 239, 239); }
+    .container.top .tabs .tab-link.active-tab { border-bottom: 3px solid #05c1ff; color: #05c1ff; }
+    .container.bottom .tabs .tab-link.active-tab { border-top: 3px solid #05c1ff; color: #05c1ff; }
+  .container.top .content { margin-top: 1.5rem; padding: 0.5rem; border: 1px solid gray; border-radius: 6px; }
+  .container.bottom .content { margin-bottom: 1.5rem; padding: 0.5rem; border: 1px solid gray; border-radius: 6px;  }
+ 

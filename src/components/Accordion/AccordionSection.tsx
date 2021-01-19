@@ -3,7 +3,7 @@ import classes from './AccordionSection.module.css';
 
 
 interface AccordionSectionProps {
-  title               : string,
+  title               :  string,
   isOpen              ?: boolean,
   maxWidth            ?: number,
   sectionHeight       ?: number,

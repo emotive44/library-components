@@ -76,7 +76,7 @@ const Accordion: FC<AccordionProps> = ({
        
         return (
           <AccordionSection
-            title           = {title}
+            title           = {title} 
             horizontal      = {horizontal}
             isOpen          = {state[title]}
             clickHandler    = {clickHandler}
