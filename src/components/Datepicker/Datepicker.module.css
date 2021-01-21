@@ -1,0 +1,7 @@
+.date-picker { display: flex; height: 35px; min-width: 13rem; border: 1px solid black; border-radius: 2px; }
+  .date-picker .input-wrapper { width: 100%; position: relative; }
+    .date-picker .input-wrapper .value { display: inline-block; margin: 0.5rem; }
+    .date-picker .input-wrapper .input { position: absolute; right: 0; top: -5px; width: 100%; height: 43px; cursor: pointer; opacity: 0; z-index: 1; box-sizing: border-box; }
+      .date-picker .input-wrapper .input::-webkit-calendar-picker-indicator { position: absolute; cursor: pointer; left: 0; top: 0; width: 100%; height: 100%; margin: 0; padding: 0; }
+  .date-picker .button { position: relative; }
+    .date-picker .button img { position: absolute; height: 30px; right: 0; top: 2px; z-index: -1; }

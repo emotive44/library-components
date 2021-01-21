@@ -12,14 +12,13 @@
     .container.left .tabs .tab-link,
     .container.right .tabs .tab-link { justify-content: flex-start; }
       .container .tabs .tab-link:hover { color: #05c1ff; background: rgb(247, 239, 239); }
-      .container .tabs .tab-link p { min-width: 10rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .container.top .tabs .tab-link.active-tab { border-bottom: 3px solid #05c1ff; color: #05c1ff; }
-    .container.bottom .tabs .tab-link.active-tab { border-top: 3px solid #05c1ff; color: #05c1ff; }
-    .container.left .tabs .tab-link.active-tab { border-right: 3px solid #05c1ff; color: #05c1ff; }
-    .container.right .tabs .tab-link.active-tab { border-left: 3px solid #05c1ff; color: #05c1ff; }
+      .container .tabs .tab-link p { min-width: 10rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-align: center; }
+    .container.top .tabs .tab-link.active-tab { border-bottom: 3px solid #05c1ff; color: #05c1ff; transition: border-bottom 0.5s ease-in-out; }
+    .container.bottom .tabs .tab-link.active-tab { border-top: 3px solid #05c1ff; color: #05c1ff; transition: border-top 0.5s ease-in-out; }
+    .container.left .tabs .tab-link.active-tab { border-right: 3px solid #05c1ff; color: #05c1ff; transition: border-right 0.5s ease-in-out; }
+    .container.right .tabs .tab-link.active-tab { border-left: 3px solid #05c1ff; color: #05c1ff; transition: border-left 0.5s ease-in-out; }
   .container .content { padding: 0.5rem; border: 1px solid gray; border-radius: 6px; overflow: hidden; }
   .container.top .content { margin-top: 1.5rem; }
   .container.bottom .content { margin-bottom: 1.5rem; }
   .container.left .content { flex: 1 1 75% ; margin-left: 1.5rem; }
   .container.right .content { flex: 1 1 75% ; margin-right: 1.5rem; }
- 

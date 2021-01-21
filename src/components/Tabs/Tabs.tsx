@@ -50,7 +50,6 @@ const Tabs:FC<TabsProps> = ({
   // get childrens on active tabname
   const tabContent = content[0]?.props.children;
 
-
   const tabs = children.map((child: IChildProps, i: number) => {
     const { tabName, icon, label } = child.props;
 

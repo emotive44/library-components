@@ -20,6 +20,7 @@ import Notification from './components/Notification/Notification';
 import Modal from './components/Modal/Modal';
 import CustomScroll from './components/CustomScroll/CustomScroll';
 import { Tabs, Tab } from './components/Tabs';
+import Datepicker from './components/Datepicker/Datepicker';
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
     job         : '',
     bio         : '',
     name        : '',
+    date        : '',
     email       : '',
     search      : '',
     salary      : '',
@@ -54,6 +56,13 @@ function App() {
         ...prev,
         [name] : value,
     }));
+  }
+
+  const dateChangeHandler = (date: string, name: string) => {
+    setState(prev => ({
+      ...prev,
+      [name]: date,
+    }))
   }
 
   const checkBoxChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -454,9 +463,14 @@ function App() {
           </div>
         </CustomScroll>
 
-      </div>
+        <Datepicker 
+          name="date"
+          label="Your Label"
+          maxDate="2020-03-12"
+          minDate="2020-01-12"
+          callbackChange={dateChangeHandler}
+        />
 
-      <div style={{ width: '40%', margin: '0.5rem auto' }} >
         <Tabs position="top">
           <Tab 
             label="tabname1"
@@ -483,7 +497,7 @@ function App() {
         </Tabs>
       </div>
 
-      <div style={{ width: '70%', margin: '1rem auto', height: '30rem'}} >
+      {/* <div style={{ width: '70%', margin: '1rem auto', height: '30rem'}} >
         <Tabs position="right">
           <Tab 
             label="tab1"
@@ -511,7 +525,7 @@ function App() {
               <p>3333</p>
           </Tab>
         </Tabs>
-      </div>
+      </div> */}
 
       <Notification
         type                  = "warning"
