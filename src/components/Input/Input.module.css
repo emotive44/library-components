@@ -4,7 +4,7 @@
   .input.medium .label { bottom: 0.1rem; font-size: 1.5rem; }
     .input.medium .label.top { bottom: 2.4rem; }
   
-  .input.large .icon { top: 0.08rem; height: 96%; }
+  .input.large .icon { top: 0.08rem; height: 95%; }
   .input.large .inputtag { height: 3.5rem; font-size: 1.6rem; }
   .input.large .label { bottom: 0.4rem; font-size: 1.6rem; }
     .input.large .label.top { bottom: 2.85rem; left: 0.1rem; }
@@ -21,4 +21,5 @@
     .label.top {  left: 0.1rem; bottom: 1.9rem; }
   .inputtag { width: 100%; padding: 0.2rem; }
   .inputtag[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; } /*remove default strokes */
+  .inputtag[type=number] { -moz-appearance: textfield; }
   .errmsg { color: red; width: 99%; font-size: 1.3rem; margin: -0.5rem 0 0 0.2rem; }

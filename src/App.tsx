@@ -21,6 +21,7 @@ import Modal from './components/Modal/Modal';
 import CustomScroll from './components/CustomScroll/CustomScroll';
 import { Tabs, Tab } from './components/Tabs';
 import Datepicker from './components/Datepicker/Datepicker';
+import RangeSlider from './components/RangeSlider/RangeSlider';
 
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
     secondBio   : '',
     thirdEmail  : '',
     secondEmail : '',
+    range       : '',
     male        : false,
     female      : false,
     other       : false,
@@ -464,11 +466,11 @@ function App() {
         </CustomScroll>
 
         <Datepicker 
-          name="date"
-          label="Your Label"
-          maxDate="2020-03-12"
-          minDate="2020-01-12"
-          callbackChange={dateChangeHandler}
+          name                  = "date"
+          label                 = "Your Label"
+          maxDate               = "2020-03-12"
+          minDate               = "2020-01-12"
+          callbackChange        = {dateChangeHandler}
         />
 
         <Tabs position="top">
@@ -495,6 +497,15 @@ function App() {
               <p>3333</p>
           </Tab>
         </Tabs>
+
+        <RangeSlider
+          minValue              = {1}
+          maxValue              = {99}
+          defaultValue          = {21}
+          name                  = "range"
+          value                 = {state.range}
+          onChange              = {inputChangeHandler}
+        />
       </div>
 
       {/* <div style={{ width: '70%', margin: '1rem auto', height: '30rem'}} >
