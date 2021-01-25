@@ -24,6 +24,12 @@ const Avatar: FC<AvatarProps> = ({
     return name.substr(0, 1).toUpperCase() as Letter;
   }
 
+  const secondLetter = (name: string) => {
+    if(name.split(' ').length > 0) {
+      return name.split(' ')[1]?.substr(0, 1).toUpperCase() as Letter;
+    }
+  }
+
   const generateBackground = (abbr: string)=> {
     const colors = {
       'A'		: '#CB3B43',
@@ -88,6 +94,8 @@ const Avatar: FC<AvatarProps> = ({
         style={{ backgroundColor : generateBackground(abbr) }}
       >
         {firstLetter(abbr)}
+        {' '}
+        {secondLetter(abbr)}
       </div>
     );
   }

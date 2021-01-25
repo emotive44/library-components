@@ -12,7 +12,7 @@
     .container.left .tabs .tab-link,
     .container.right .tabs .tab-link { justify-content: flex-start; }
       .container .tabs .tab-link:hover { color: #05c1ff; background: rgb(247, 239, 239); }
-      .container .tabs .tab-link p { min-width: 10rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-align: center; }
+      .container .tabs .tab-link p { min-width: 4rem; margin-bottom: 0.3rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-align: center; align-self: flex-end; }
     .container.top .tabs .tab-link.active-tab { border-bottom: 3px solid #05c1ff; color: #05c1ff; transition: border-bottom 0.5s ease-in-out; }
     .container.bottom .tabs .tab-link.active-tab { border-top: 3px solid #05c1ff; color: #05c1ff; transition: border-top 0.5s ease-in-out; }
     .container.left .tabs .tab-link.active-tab { border-right: 3px solid #05c1ff; color: #05c1ff; transition: border-right 0.5s ease-in-out; }

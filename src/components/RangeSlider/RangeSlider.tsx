@@ -49,7 +49,7 @@ const RangeSlider:FC<RangeSliderProps> = ({
           max               = {maxValue}
           onChange          = {(e) => onChange(e)}
           value             = {value || defaultValue || minValue} 
-          />
+        />
         <span className={classes.bubble} ref={bubbleRef} >
           {value || defaultValue || minValue}
         </span>

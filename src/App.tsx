@@ -22,6 +22,7 @@ import CustomScroll from './components/CustomScroll/CustomScroll';
 import { Tabs, Tab } from './components/Tabs';
 import Datepicker from './components/Datepicker/Datepicker';
 import RangeSlider from './components/RangeSlider/RangeSlider';
+import Carousel from './components/Carousel/Carousel';
 
 
 function App() {
@@ -50,6 +51,16 @@ function App() {
   });
   const [radioValue, setRadioValue] = useState('radio1');
   const radioBtns = { radio1: false, radio2: false }
+
+  const arrayWithImgs = [
+    'https://images.unsplash.com/photo-1581320546160-0078de357255?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=700&q=80',
+    'https://images.unsplash.com/photo-1518639192441-8fce0a366e2e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1051&q=80',
+    'https://images.unsplash.com/photo-1552580535-49f1f22dfbcb?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=694&q=80',
+    'https://images.unsplash.com/photo-1598294203210-2be32d3bf7be?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=675&q=80',
+    'https://images.unsplash.com/photo-1547336863-6491b008052b?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1214&q=80',
+    'https://images.unsplash.com/photo-1567364301956-d143bd377905?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1051&q=80',
+    'https://images.unsplash.com/photo-1564097449148-f629e6dc0402?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=700&q=80',
+  ];
 
   const inputChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
@@ -370,9 +381,9 @@ function App() {
         </div>
 
         <div className={classes.flex}>
-          <Avatar abbr="Marko" />
-          <Avatar abbr="Vildan" />
-          <Avatar abbr="Georgi" />
+          <Avatar abbr="Marko Streleshki" />
+          <Avatar abbr="Vildan V" />
+          <Avatar abbr="Georgi A" />
           <Avatar abbr="Nikolay" />
           <Avatar 
             abbr               = "Marko"
@@ -546,6 +557,13 @@ function App() {
         autoClose
         secondsDelay          = {3}
       />
+
+      <div style={{ width: '90%', margin: '1rem auto', height: '45rem' }}>
+        <Carousel 
+          imgData={arrayWithImgs} 
+          // clickImgChange
+        />
+      </div>
 
       <Button fullWidth>
         Full width button
