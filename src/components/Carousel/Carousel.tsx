@@ -3,12 +3,14 @@ import classes from './Carousel.module.css';
 
 
 interface CarouselProps {
-  imgData           : string[],
+  imgData           : string[],  // array with img urls
   clickImgChange    ?: boolean,  // if you want to slide by click image
+  infinity          ?: boolean,  // if you want infinity carousel
 }
 
 const Carousel: FC<CarouselProps> = ({
   imgData,
+  infinity,
   clickImgChange,
 }) => {
   const [imgIndx, setImgIndx] = useState(0);
@@ -30,16 +32,27 @@ const Carousel: FC<CarouselProps> = ({
 
   const getPreviousImg = () => {
     // check, because we want to show minimum 2 images
-    if(imgIndx === -1) {
+    if(!infinity && imgIndx === -1) {
       return;
     } 
+
+
+    if(infinity && imgIndx*(-1) > imgData.length - 1) {
+      setImgIndx(-1);
+      return;
+    }
 
     setImgIndx(prev => prev - 1);
   }
 
   const getNextImg = () => {
     // check, because we want to show minimum 2 images
-    if(imgIndx === imgData.length - 2) {
+    if(!infinity && imgIndx === imgData.length - 2) {
+      return;
+    }
+
+    if(infinity && imgIndx === imgData.length - 2) {
+      setImgIndx(-1);
       return;
     }
 
@@ -47,22 +60,43 @@ const Carousel: FC<CarouselProps> = ({
   }
 
   let arrayWithImgs = [];
-
-  if(imgIndx === - 1) {
-    // if we want to show first 2 images
-    arrayWithImgs = imgData.slice(0, 2);
+  if(infinity) {
+    if(imgIndx === -1) {
+      // if user open first image, we have to show last and first two images
+      arrayWithImgs = [...imgData.slice(-1), ...imgData.slice(0, 2)];
+    } else if (imgIndx === -2) {
+      arrayWithImgs = [...imgData.slice(-2), ...imgData.slice(0, 1)];
+    } else if (imgIndx < -2) {
+      // get current 3 images if scroll on left
+      arrayWithImgs = [...imgData.slice(imgIndx).slice(0, 3)];
+    } else if (imgIndx === imgData.length - 2) {
+      // with infinity carousel at the end get last two image and first
+      arrayWithImgs = [...imgData.slice(-2), ...imgData.slice(0, 1)];
+    } else if (imgIndx === imgData.length -1 ) {
+      // with infinity carousel at the end get last image and first two
+      arrayWithImgs = [...imgData.slice(-1), ...imgData.slice(0, 2)];
+    } else {
+      // get current 3 images if scroll on right
+      arrayWithImgs = imgData.slice(imgIndx, imgIndx + 3);
+    }
   } else {
-    // else get current 3 images
-    arrayWithImgs = imgData.slice(imgIndx, imgIndx + 3);
+    if(imgIndx === - 1) {
+      // if we want to show first 2 images
+      arrayWithImgs = imgData.slice(0, 2);
+    } else {
+      // else get current 3 images
+      arrayWithImgs = imgData.slice(imgIndx, imgIndx + 3);
+    }
   }
 
+  // current images, which user see
   let imagesContent =  arrayWithImgs.map((img, i) => {
     const imageClasses = [classes.img];
     imageClasses.push(imageOrientation(img));
 
     // by default image in middle is current, but if user show first 2 images,
-    // we have to make first image to be current
-    if(imgIndx === -1) {
+    // we have to make first image to be current only for not infinity carousel
+    if(!infinity && imgIndx === -1) {
       switch (i) {
         case 0:
           imageClasses.push(classes.current);
@@ -82,9 +116,9 @@ const Carousel: FC<CarouselProps> = ({
         case 2: 
           imageClasses.push(classes.next);
           break;
-      }
+      }  
     }
-    
+
     // change image by click on image
     const changeImage = () => {
       if(imageClasses.includes(classes.next)) {
@@ -98,20 +132,20 @@ const Carousel: FC<CarouselProps> = ({
     if(imageClasses.includes(classes.current)) {
       styles.cursor = 'auto';
     } else {
-      styles.cursor = 'pointer'
+      styles.cursor = 'pointer';
     }
 
     return (
       <div 
-        key={i} 
-        style={clickImgChange ? styles : {}}
-        onClick={clickImgChange ? changeImage : () => {}}
-        className={imageClasses.join(' ')}
+        key               = {i} 
+        className         = {imageClasses.join(' ')}
+        style             = {clickImgChange ? styles : {}}
+        onClick           = {clickImgChange ? changeImage : () => {}}
       >
         <img src={img} alt="" />
       </div>
-    )
-  })
+    );
+  });
 
   return (
     <div className={classes.carousel}>
