@@ -11,7 +11,7 @@
         .carousel .main .images .landscape img { width: 100%; height: auto; max-height: 100%; }
         .carousel .main .images .portrait img { width: auto; height: 100%; max-width: 100%; }
       .carousel .main .images .previous  { left: 0; z-index: 3; transform: scale(0.8); opacity: 0.6; }
-      .carousel .main .images .current { z-index: 12; }
+      .carousel .main .images .current { z-index: 12; box-shadow: 8px 1px 9px 0px rgba(0,0,0,0.52), -8px 1px 9px 0px rgba(0,0,0,0.52); }
       .carousel .main .images .next { right: 0; z-index: 3; transform: scale(0.8); opacity: 0.6; }
     .carousel .main .footer-wrapper { display: flex; margin-top: 0.5rem; }
       .carousel .main .footer-wrapper .footer { display: inline-flex; margin: 0 auto; gap: 1rem; overflow-x: auto; }

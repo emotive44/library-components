@@ -38,10 +38,8 @@ const Carousel: FC<CarouselProps> = ({
       return;
     } 
 
-
-    if(infinity && imgIndx*(-1) > imgData.length - 1) {
-      setImgIndx(-1);
-      return;
+    if(infinity && imgIndx < 0) {
+      setImgIndx(imgData.length -1);
     }
 
     setImgIndx(prev => prev - 1);
@@ -66,11 +64,6 @@ const Carousel: FC<CarouselProps> = ({
     if(imgIndx === -1) {
       // if user open first image, we have to show last and first two images
       arrayWithImgs = [...imgData.slice(-1), ...imgData.slice(0, 2)];
-    } else if (imgIndx === -2) {
-      arrayWithImgs = [...imgData.slice(-2), ...imgData.slice(0, 1)];
-    } else if (imgIndx < -2) {
-      // get current 3 images if scroll on left
-      arrayWithImgs = [...imgData.slice(imgIndx).slice(0, 3)];
     } else if (imgIndx === imgData.length - 2) {
       // with infinity carousel at the end get last two image and first
       arrayWithImgs = [...imgData.slice(-2), ...imgData.slice(0, 1)];
