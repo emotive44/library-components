@@ -562,7 +562,8 @@ function App() {
         <Carousel 
           imgData={arrayWithImgs} 
           // clickImgChange
-          infinity
+          // infinity
+          withFooter
         />
       </div>
 

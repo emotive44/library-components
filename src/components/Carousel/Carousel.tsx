@@ -6,11 +6,13 @@ interface CarouselProps {
   imgData           : string[],  // array with img urls
   clickImgChange    ?: boolean,  // if you want to slide by click image
   infinity          ?: boolean,  // if you want infinity carousel
+  withFooter        ?: boolean, // if want to show footer with small images navigation
 }
 
 const Carousel: FC<CarouselProps> = ({
   imgData,
   infinity,
+  withFooter,
   clickImgChange,
 }) => {
   const [imgIndx, setImgIndx] = useState(0);
@@ -147,6 +149,28 @@ const Carousel: FC<CarouselProps> = ({
     );
   });
 
+  let footerContent: any = null;
+  const imagesClasses = [classes.images];
+  if(withFooter) {
+    imagesClasses.push(classes['with-footer']);
+
+    footerContent = imgData.map((img, i) => {
+      const styles = {
+        backgroundImage: `url(${img})`,
+        opacity: `${imgIndx === i - 1 ? '1' : '0.6'}` // to show current image
+      }
+
+      return (
+        <div
+          key             = {i}
+          style           = {styles}
+          className       = {classes['img-footer']}
+          onClick         = {() => setImgIndx(i - 1)}
+        />
+      );
+    });
+  }
+
   return (
     <div className={classes.carousel}>
       {!clickImgChange && (
@@ -155,7 +179,12 @@ const Carousel: FC<CarouselProps> = ({
         </div>
       )}
       <div className={classes.main}>
-        <div className={classes.images}> {imagesContent} </div>
+        <div className={imagesClasses.join(' ')}> {imagesContent} </div>
+        {withFooter && (
+          <div className={classes['footer-wrapper']} >
+            <div className={classes.footer}> {footerContent} </div>
+          </div>
+        )}
       </div>
       {!clickImgChange && (
         <div className={[classes.arrow, classes.right].join(' ')} onClick={getNextImg}>
