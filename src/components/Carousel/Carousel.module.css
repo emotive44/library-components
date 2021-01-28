@@ -6,20 +6,14 @@
   .carousel .main { flex: 1; margin: 0.5rem 1.5rem; width: 80%; }
     .carousel .main .images { position: relative; display: flex; justify-content: center; height: 100%; min-width: 50%; }
     .carousel .main .images.with-footer { height: 90%; }
-      .carousel .main .images .img { display: flex; align-items: center; height: 100%; width: 100%; max-width: 55%; background-color:rgb(0, 0, 0); position: absolute; user-select: none; }
+      .carousel .main .images .img { display: flex; align-items: center; opacity: 0; transform: scale(0) translateX(0); height: 100%; width: 100%; max-width: 55%; background-color:rgb(0, 0, 0); position: absolute; user-select: none; }
         .carousel .main .images .img img { display: block; margin: 0 auto; }
         .carousel .main .images .landscape img { width: 100%; height: auto; max-height: 100%; }
         .carousel .main .images .portrait img { width: auto; height: 100%; max-width: 100%; }
-      .carousel .main .images .previous  { left: 0; z-index: 3; transform: scale(0.8); opacity: 0.6; }
-      .carousel .main .images .current { z-index: 12; box-shadow: 8px 1px 9px 0px rgba(0,0,0,0.52), -8px 1px 9px 0px rgba(0,0,0,0.52); }
-      .carousel .main .images .next { right: 0; z-index: 3; transform: scale(0.8); opacity: 0.6; }
+      .carousel .main .images .previous  {  z-index: 3; transform: scale(0.8) translateX(-56%); opacity: 0.6; transition: transform 0.6s ease, opacity 1s ease-out; }
+      .carousel .main .images .current { z-index: 12; transform: translateX(0); opacity: 1; box-shadow: 8px 1px 9px 0px rgba(0,0,0,0.52), -8px 1px 9px 0px rgba(0,0,0,0.52); transition: transform 0.8s ease, opacity 0.3s ease-in; }
+      .carousel .main .images .next {  z-index: 3; transform: scale(0.8) translateX(56%); opacity: 0.6; transition: transform 0.6s ease, opacity 1s ease-out; }
     .carousel .main .footer-wrapper { display: flex; margin-top: 0.5rem; }
       .carousel .main .footer-wrapper .footer { display: inline-flex; margin: 0 auto; gap: 1rem; overflow-x: auto; }
         .carousel .main .footer-wrapper .footer::-webkit-scrollbar { display: none; }
         .carousel .main .footer-wrapper .footer .img-footer { min-width: 40px; height: 40px; cursor: pointer; border-radius: 4px; background-size: cover; background-position: center; }
-
-@media (max-width: 1024px) {
-  .carousel .main .images .img { max-width: 80%; }
-  .carousel .main .images .previous  { left: -40px; }
-  .carousel .main .images .next { right: -40px; }
-}
