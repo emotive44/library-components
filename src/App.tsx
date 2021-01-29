@@ -23,6 +23,7 @@ import { Tabs, Tab } from './components/Tabs';
 import Datepicker from './components/Datepicker/Datepicker';
 import RangeSlider from './components/RangeSlider/RangeSlider';
 import Carousel from './components/Carousel/Carousel';
+import Select from './components/Select/Select';
 
 
 function App() {
@@ -517,6 +518,13 @@ function App() {
           value                 = {state.range}
           onChange              = {inputChangeHandler}
         />
+
+        <div style={{ maxHeight: '10rem' }}>
+          <Select 
+            clearable
+            label              = "Custom label"
+          />
+        </div>
       </div>
 
       {/* <div style={{ width: '70%', margin: '1rem auto', height: '30rem'}} >

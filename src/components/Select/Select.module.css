@@ -1,0 +1,9 @@
+.container { position: relative; height: auto; min-height: 2.5rem; max-height: 100%; display: flex; justify-content: space-between; align-items: center; border: 1px solid black; border-radius: 4px; }
+  .container .select { margin: 0.6rem; display: flex; width: 100%; }
+    .container .select .scroll { margin-right: 2rem; flex: 1; }
+    .container .select .label { width: 100%; max-height: 7rem; margin-right: 1rem; cursor: pointer; }
+    .container .select .icons { display: flex; }
+      .container .select .icons small { width: 1px; background: gray; margin-right: 1rem; }
+      .container .select .icons .icon { padding-right: 1rem; display: flex; align-items: center; }
+      .container .select .icons .icon.arrow { position: relative; transition: 0.4s ease-in-out all; cursor: pointer; }
+      .container .select .icons .icon.arrow.open { transform: rotate(180deg); padding-right: 0; padding-left: 1rem; }

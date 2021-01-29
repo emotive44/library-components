@@ -95,10 +95,15 @@ const Carousel: FC<CarouselProps> = ({
     imagesClasses.push(classes['with-footer']);
 
     footerContent = imgData.map((img, i) => {
+      const styles = {
+        backgroundImage: `url(${img})`,
+        opacity: `${imgIndx === i - 1 ? '1' : '0.6'}` // to show current image
+      }
+
       return (
         <div
           key             = {i}
-          style           = {{ backgroundImage: `url(${img})` }}
+          style           = {styles}
           className       = {classes['img-footer']}
           onClick         = {() => setImgIndx(i)}
         />

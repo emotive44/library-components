@@ -3,15 +3,21 @@ import classes from './CustomScroll.module.css';
 
 
 interface CustomScrollProps {
-  size: 'small' | 'medium' | 'large'
+  className?: string,
+  size: 'micro' | 'small' | 'medium' | 'large',
 }
 
 const CustomScroll:FC<CustomScrollProps> = ({ 
   size, 
-  children
+  children,
+  className,
 }) => {
   const scrollClasses = [classes.scroll];
   scrollClasses.push(classes[size]);
+
+  if(className) {
+    scrollClasses.push(className);
+  }
 
   return (
     <div className={scrollClasses.join(' ')} >

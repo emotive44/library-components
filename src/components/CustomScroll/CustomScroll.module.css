@@ -1,4 +1,5 @@
-.scroll { overflow-y: auto; margin-right: 0.2rem; }
+.scroll { overflow-y: auto; margin-right: 0.2rem; display: flex; align-items: center; word-break: break-all; }
+  .scroll.micro::-webkit-scrollbar { width: 4px; }
   .scroll.small::-webkit-scrollbar { width: 9px; }
   .scroll.medium::-webkit-scrollbar { width: 12px; }
   .scroll.large::-webkit-scrollbar { width: 15px; }
