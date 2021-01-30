@@ -519,10 +519,13 @@ function App() {
           onChange              = {inputChangeHandler}
         />
 
-        <div style={{ maxHeight: '10rem' }}>
+        <div style={{ maxHeight: '10rem' }}>    
           <Select 
             clearable
-            label              = "Custom label"
+            placeholder         = "Select...."
+            label               = "Your Label"
+            err                 = "Please select value"
+            optsMaxHeight       = {200}
           />
         </div>
       </div>
