@@ -1,6 +1,7 @@
 import React, { FC, useState, useRef, useEffect, ReactElement, ReactNode } from 'react';
 import classes from './Select.module.css';
 
+import Input from '../Input/Input';
 import SelectOption from './SelectOption';
 import CustomScroll from '../CustomScroll/CustomScroll';
 
@@ -22,6 +23,7 @@ interface SelectProps {
   className           ?: string,
   optsWidth           ?: number,
   clearable           ?: boolean,
+  searchable          ?: boolean,
   onChange: (value: string) => void, // change current value
 }
 
@@ -33,6 +35,7 @@ const Select:FC<SelectProps> = ({
   className,
   optsWidth,
   clearable,
+  searchable,
   placeholder,
   optsMaxHeight,
   value: currValue,
@@ -42,6 +45,7 @@ const Select:FC<SelectProps> = ({
   const [open, setOpen] = useState(false);
   const [optionsHeight, setOptionsHeight] = useState(0);
   const [selectValue, setSelectValue] =  useState<ReactNode>(null);
+  const [searchValue, setSearchValue] = useState('');
 
   // add custom class 
   const mainClasses = [classes.container];
@@ -68,10 +72,14 @@ const Select:FC<SelectProps> = ({
     onChange('');
   }
 
+  const inputChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(e.target.value);
+  }
+
   useEffect(() => {
     // set dynamicly height for options container
     const el: any = opRef.current;
-    setOptionsHeight(el.scrollHeight);
+    setOptionsHeight(el.scrollHeight + 7);
 
     // close select if user click outside
     const handleClickOutside = (e: MouseEvent) => {
@@ -86,10 +94,10 @@ const Select:FC<SelectProps> = ({
       // Unbind the event listener on clean up
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, []);
+  }, [setOptionsHeight, searchValue]);
 
   // dynamic styles for options contnainer
-  let optionsStyles: any = { bottom: '0px', maxHeight: '0px' };
+  let optionsStyles: any = { top: '30px', maxHeight: '0px' };
   // if options container is more than maxheight, set scrollbar
   if(optionsHeight > optsMaxHeight!) {
     optionsStyles.overflowY = 'auto';
@@ -102,12 +110,12 @@ const Select:FC<SelectProps> = ({
 
   // if options container is smaller then maxheight we set him value else set maxheight 
   if(open) {
-    optionsStyles.bottom = `-${optionsHeight < optsMaxHeight! ? optionsHeight + 10 : optsMaxHeight! + 10}px`;
+    optionsStyles.top = '45px';
     optionsStyles.maxHeight = `${optionsHeight < optsMaxHeight! ? optionsHeight : optsMaxHeight!}px`;
   } 
 
   // create Options for select
-  const optionsContent = React.Children.map(children as IChildProps[], (child: IChildProps) => {
+  let optionsContent = React.Children.map(children as IChildProps[], (child: IChildProps) => {
     const { value, icon } = child?.props;
     return (
       <SelectOption 
@@ -121,7 +129,14 @@ const Select:FC<SelectProps> = ({
         closeSelect     = {() => setOpen(false)}
       />
     );
-  })
+  });
+
+  // check if user put in search value, we look for all options which start with this search value
+  if(searchValue !== '') {
+    optionsContent = optionsContent.filter(
+      child => child.props.value.toLowerCase().startsWith(searchValue.toLowerCase())
+    );
+  }
 
   return (
     <>
@@ -150,7 +165,23 @@ const Select:FC<SelectProps> = ({
           style         = {optionsStyles}
           className     = {optionsClasses.join(' ')} 
         >
-          {optionsContent}
+          {searchable && (
+            <div  className={classes.search}>
+              <Input
+                leftIcon 
+                type              = "search" 
+                name              = "search"
+                placeHolder       = "Search...." 
+                value             = {searchValue}
+                callbackChange    = {inputChangeHandler}
+              />
+            </div>
+          )}
+
+          {optionsContent.length > 0 
+            ? optionsContent
+            : <p className={classes['search-msg']}>No Options</p>
+          }
         </div>
       </div>
       {err && <p className={classes.errmsg}> {err} </p>}

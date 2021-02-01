@@ -530,11 +530,12 @@ function App() {
         <div style={{ maxHeight: '10rem' }}>    
           <Select 
             clearable
-            placeholder         = "Select car...."
-            label               = "Your Label"
-            err                 = "Please select value"
-            optsMaxHeight       = {200}
+            searchable
+            optsMaxHeight       = {300}
+            label               = "Car Model"
             value               = {state.select}
+            placeholder         = "Select car...."
+            err                 = "Please select value"
             onChange            = {selectChangeHandler}
           > 
             <Option value={'Audi'} icon={<i className="fas fa-user" />} />
@@ -542,7 +543,7 @@ function App() {
             <Option value={'Opel'} icon={<i className="fas fa-user" />} />
             <Option value={'Mercedes'} icon={<i className="fas fa-user" />} />
             <Option value={'Ford'}/>
-            <Option value={'Reanult'}> 
+            <Option value={'Renault'}> 
               <div style={{ display: 'flex', width: '100%', justifyContent: 'space-around' }}>
                 <span>Custom Template</span>
                 <small>one</small>
