@@ -1,9 +1,20 @@
-import React, { FC, useState, useRef, useEffect } from 'react';
+import React, { FC, useState, useRef, useEffect, ReactElement, ReactNode } from 'react';
 import classes from './Select.module.css';
 
+import SelectOption from './SelectOption';
 import CustomScroll from '../CustomScroll/CustomScroll';
 
+
+interface IChildProps {
+  props: {
+    value              : string
+    icon              ?: ReactElement,
+    children           : React.ReactNode,
+  },
+}
+
 interface SelectProps {
+  value                : string, // value, which will send to server
   optsMaxHeight        : number,
   err                 ?: string,
   label               ?: string,
@@ -11,21 +22,26 @@ interface SelectProps {
   className           ?: string,
   optsWidth           ?: number,
   clearable           ?: boolean,
+  onChange: (value: string) => void, // change current value
 }
 
 const Select:FC<SelectProps> = ({
   err,
   label,
+  onChange,
+  children,
   className,
   optsWidth,
   clearable,
   placeholder,
   optsMaxHeight,
+  value: currValue,
 }) => {
   const opRef = useRef(null);
   const selectRef = useRef(null);
   const [open, setOpen] = useState(false);
   const [optionsHeight, setOptionsHeight] = useState(0);
+  const [selectValue, setSelectValue] =  useState<ReactNode>(null);
 
   // add custom class 
   const mainClasses = [classes.container];
@@ -43,6 +59,13 @@ const Select:FC<SelectProps> = ({
   
   const toggleSelect = () => {
     setOpen(prev => !prev);
+  }
+
+  // reset value and close a select popup
+  const clearHandler = () => {
+    setSelectValue(null);
+    setOpen(false);
+    onChange('');
   }
 
   useEffect(() => {
@@ -83,16 +106,39 @@ const Select:FC<SelectProps> = ({
     optionsStyles.maxHeight = `${optionsHeight < optsMaxHeight! ? optionsHeight : optsMaxHeight!}px`;
   } 
 
+  // create Options for select
+  const optionsContent = React.Children.map(children as IChildProps[], (child: IChildProps) => {
+    const { value, icon } = child?.props;
+    return (
+      <SelectOption 
+        icon            = {icon}
+        value           = {value}
+        onChange        = {onChange}
+        currValue       = {currValue}
+        setSelectValue  = {setSelectValue}
+        checked         = {value === currValue}
+        template        = {child.props.children}
+        closeSelect     = {() => setOpen(false)}
+      />
+    );
+  })
+
   return (
     <>
       <p>{label}</p>
       <div className={mainClasses.join(' ')} ref={selectRef}>
         <div className={classes.select}>
           <CustomScroll size='micro' className={classes.scroll}>
-            <p onClick={toggleSelect} className={classes.label}> {placeholder} </p>
+            <div onClick={toggleSelect} className={classes['select-value']}>
+              {selectValue ? selectValue : placeholder} 
+            </div>
           </CustomScroll>
           <div className={classes.icons}>
-            {clearable && <span className={classes.icon}> <i className='fas fa-times' /> </span>}
+            {clearable && (
+              <span className={classes.icon} onClick={clearHandler}>
+                <i className='fas fa-times' />
+              </span>
+            )}
             <small />
             <span onClick={toggleSelect} className={toggleIconClasses.join(' ')}>
               <i className='fas fa-chevron-down' />
@@ -104,8 +150,7 @@ const Select:FC<SelectProps> = ({
           style         = {optionsStyles}
           className     = {optionsClasses.join(' ')} 
         >
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi maiores impedit iure illum? Dignissimos ullam, quaerat obcaecati doloribus perspiciatis sunt quisquam veniam laudantium itaque? Deserunt sapiente voluptate eveniet error minima.</p>
-          <p>1 123 1</p>
+          {optionsContent}
         </div>
       </div>
       {err && <p className={classes.errmsg}> {err} </p>}

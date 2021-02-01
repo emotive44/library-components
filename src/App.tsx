@@ -23,7 +23,7 @@ import { Tabs, Tab } from './components/Tabs';
 import Datepicker from './components/Datepicker/Datepicker';
 import RangeSlider from './components/RangeSlider/RangeSlider';
 import Carousel from './components/Carousel/Carousel';
-import Select from './components/Select/Select';
+import { Select, Option } from './components/Select';
 
 
 function App() {
@@ -42,6 +42,7 @@ function App() {
     thirdEmail  : '',
     secondEmail : '',
     range       : '',
+    select      : '',
     male        : false,
     female      : false,
     other       : false,
@@ -98,6 +99,13 @@ function App() {
     }));
 
     setRadioValue(value);
+  }
+
+  const selectChangeHandler = (value: string) => {
+    setState(prev => ({
+      ...prev,
+      select: value
+    }));
   }
 
   const submitHandler = () => {
@@ -522,11 +530,26 @@ function App() {
         <div style={{ maxHeight: '10rem' }}>    
           <Select 
             clearable
-            placeholder         = "Select...."
+            placeholder         = "Select car...."
             label               = "Your Label"
             err                 = "Please select value"
             optsMaxHeight       = {200}
-          />
+            value               = {state.select}
+            onChange            = {selectChangeHandler}
+          > 
+            <Option value={'Audi'} icon={<i className="fas fa-user" />} />
+            <Option value={'BMW'} icon={<i className="fas fa-user" />} />
+            <Option value={'Opel'} icon={<i className="fas fa-user" />} />
+            <Option value={'Mercedes'} icon={<i className="fas fa-user" />} />
+            <Option value={'Ford'}/>
+            <Option value={'Reanult'}> 
+              <div style={{ display: 'flex', width: '100%', justifyContent: 'space-around' }}>
+                <span>Custom Template</span>
+                <small>one</small>
+                <p>Two</p>
+              </div>
+            </Option>
+          </Select>
         </div>
       </div>
 

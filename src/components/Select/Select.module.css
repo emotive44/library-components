@@ -1,7 +1,7 @@
 .container { position: relative; height: auto; min-height: 2.5rem; max-height: 100%; display: flex; justify-content: space-between; align-items: center; border: 1px solid black; border-radius: 4px; }
   .container .select { margin: 0.6rem; display: flex; width: 100%; }
     .container .select .scroll { flex: 1; }
-    .container .select .label { width: 100%; max-height: 7rem; cursor: pointer; }
+    .container .select .select-value { width: 100%; max-height: 7rem; cursor: pointer; }
     .container .select .icons { display: flex; }
       .container .select .icons small { width: 1px; background: gray; margin-right: 1rem; }
       .container .select .icons .icon { padding-right: 1rem; display: flex; align-items: center; color: gray; transition: 0.2s ease-in-out color; }
