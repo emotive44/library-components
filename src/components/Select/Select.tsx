@@ -8,7 +8,8 @@ import CustomScroll from '../CustomScroll/CustomScroll';
 
 export interface IOption {
   value: string, 
-  icon: ReactNode
+  icon: ReactNode,
+  temp?: ReactNode,
 }
 
 interface IChildProps {
@@ -143,7 +144,11 @@ const Select:FC<SelectProps> = ({
     const { value, icon } = child?.props;
 
     if(typeof currValue === 'object' && currValue.includes(value)) {
-      multiSelectedValues.push({value, icon});
+      if(child.props.children) {
+        multiSelectedValues.push({value, icon, temp: child.props.children})
+      } else {
+        multiSelectedValues.push({value, icon});
+      }
     }
     return (
       <SelectOption

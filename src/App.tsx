@@ -598,7 +598,14 @@ function App() {
           > 
             <Option value={'Audi'} icon={<i className="fas fa-user" />} />
             <Option value={'BMW'} icon={<i className='fas fa-times' />} />
-            <Option value={'Opel'} />
+            <Option value={'Opel'} >
+              <div style={{display: 'flex', width: '100%'}}>
+                <span>Oe</span>
+                <small style={{background: 'red', marginLeft: '3rem'}}>Tem</small>
+              </div>
+            </Option>
+
+  
             <Option value={'Mercedes'} icon={<i className="fas fa-user" />} />
             <Option value={'Ford'} icon={<i className="fas fa-user" />} />
             <Option value={'Renault'} icon={<i className="fas fa-user" />} /> 

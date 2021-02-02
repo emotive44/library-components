@@ -48,8 +48,8 @@ const SelectOption:FC<SelectOptionProps> = ({
     multiContent = multiValues!.map((option, i: number) => {
         return (
           <div key={i} className={classes.multiContent}>
-            {option.icon}
-            <p> {option.value} </p>
+            {/* if we have template, present him else icon and value */}
+            {option.temp ? option.temp : (<> {option.icon} <p> {option.value} </p> </>)}
             <span className={classes.close} onClick={(e) => removeSelectedValue(e, option.value)}>
               <i className='fas fa-times' />
             </span>
