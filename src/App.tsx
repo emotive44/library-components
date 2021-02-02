@@ -25,9 +25,13 @@ import RangeSlider from './components/RangeSlider/RangeSlider';
 import Carousel from './components/Carousel/Carousel';
 import { Select, Option } from './components/Select';
 
+interface IState {
+  [key: string]: any,
+  multiSelect: string[]
+}
 
 function App() {
-  const [state, setState] = useState({
+  const [state, setState] = useState<IState>({
     age         : '', 
     job         : '',
     bio         : '',
@@ -43,6 +47,7 @@ function App() {
     secondEmail : '',
     range       : '',
     select      : '',
+    multiSelect : [],
     male        : false,
     female      : false,
     other       : false,
@@ -101,11 +106,36 @@ function App() {
     setRadioValue(value);
   }
 
-  const selectChangeHandler = (value: string) => {
-    setState(prev => ({
-      ...prev,
-      select: value
-    }));
+  const selectChangeHandler = (value: string, multi?: false, remove?: false) => {
+    // reset values for multiselect
+    if(multi && value === '') {
+      setState(prev => ({
+        ...prev,
+        multiSelect: [],
+      }));
+      return;
+    }
+
+    // remove selected values from multi select
+    if(multi && remove) {
+      setState(prev => ({
+        ...prev,
+        multiSelect: prev.multiSelect.filter(selected => selected !== value),
+      }));
+      return;
+    }
+
+    if(!multi) {
+      setState(prev => ({
+        ...prev,
+        select: value,
+      }));
+    } else {
+      setState(prev => ({
+        ...prev,
+        multiSelect: [...prev.multiSelect, value],
+      }));
+    }
   }
 
   const submitHandler = () => {
@@ -550,6 +580,28 @@ function App() {
                 <p>Two</p>
               </div>
             </Option>
+          </Select>
+        </div>
+
+        
+        <div style={{ maxHeight: '10rem' }}>    
+          <Select
+            multiple
+            clearable
+            searchable
+            optsMaxHeight       = {300}
+            label               = "Car Model"
+            value               = {state.multiSelect}
+            placeholder         = "Select car...."
+            err                 = "Please select value"
+            onChange            = {selectChangeHandler}
+          > 
+            <Option value={'Audi'} icon={<i className="fas fa-user" />} />
+            <Option value={'BMW'} icon={<i className='fas fa-times' />} />
+            <Option value={'Opel'} />
+            <Option value={'Mercedes'} icon={<i className="fas fa-user" />} />
+            <Option value={'Ford'} icon={<i className="fas fa-user" />} />
+            <Option value={'Renault'} icon={<i className="fas fa-user" />} /> 
           </Select>
         </div>
       </div>

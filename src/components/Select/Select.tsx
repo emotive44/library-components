@@ -6,6 +6,11 @@ import SelectOption from './SelectOption';
 import CustomScroll from '../CustomScroll/CustomScroll';
 
 
+export interface IOption {
+  value: string, 
+  icon: ReactNode
+}
+
 interface IChildProps {
   props: {
     value              : string
@@ -15,7 +20,7 @@ interface IChildProps {
 }
 
 interface SelectProps {
-  value                : string, // value, which will send to server
+  value                : string | string[], // value, which will send to server
   optsMaxHeight        : number,
   err                 ?: string,
   label               ?: string,
@@ -23,13 +28,15 @@ interface SelectProps {
   className           ?: string,
   optsWidth           ?: number,
   clearable           ?: boolean,
+  multiple            ?: boolean,
   searchable          ?: boolean,
-  onChange: (value: string) => void, // change current value
+  onChange             : Function,
 }
 
 const Select:FC<SelectProps> = ({
   err,
   label,
+  multiple,
   onChange,
   children,
   className,
@@ -41,9 +48,11 @@ const Select:FC<SelectProps> = ({
   value: currValue,
 }) => {
   const opRef = useRef(null);
+  const selectedValueRef = useRef(null);
   const selectRef = useRef(null);
   const [open, setOpen] = useState(false);
   const [optionsHeight, setOptionsHeight] = useState(0);
+  const [selectValueHeight, setSelectValueHeight] = useState(0);
   const [selectValue, setSelectValue] =  useState<ReactNode>(null);
   const [searchValue, setSearchValue] = useState('');
 
@@ -69,7 +78,13 @@ const Select:FC<SelectProps> = ({
   const clearHandler = () => {
     setSelectValue(null);
     setOpen(false);
-    onChange('');
+
+    // if have multiple select, we have to reset value on empty array, not a string
+    if(multiple) {
+      onChange('', true);
+    } else {
+      onChange('');
+    }
   }
 
   const inputChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -80,7 +95,9 @@ const Select:FC<SelectProps> = ({
     // set dynamicly height for options container
     const el: any = opRef.current;
     setOptionsHeight(el.scrollHeight + 7);
+  }, [searchValue]);
 
+  useEffect(() => {
     // close select if user click outside
     const handleClickOutside = (e: MouseEvent) => {
       const el: any = selectRef.current;
@@ -94,7 +111,13 @@ const Select:FC<SelectProps> = ({
       // Unbind the event listener on clean up
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [setOptionsHeight, searchValue]);
+  }, []);
+
+  useEffect(() => {
+    const el: any = selectedValueRef.current;
+    setSelectValueHeight(el.scrollHeight + 20);
+  }, [selectValue]);
+
 
   // dynamic styles for options contnainer
   let optionsStyles: any = { top: '30px', maxHeight: '0px' };
@@ -110,21 +133,26 @@ const Select:FC<SelectProps> = ({
 
   // if options container is smaller then maxheight we set him value else set maxheight 
   if(open) {
-    optionsStyles.top = '45px';
+    optionsStyles.top = multiple ? `${selectValueHeight}px` : '45px';
     optionsStyles.maxHeight = `${optionsHeight < optsMaxHeight! ? optionsHeight : optsMaxHeight!}px`;
   } 
 
+  let multiSelectedValues: IOption[] = [];
   // create Options for select
   let optionsContent = React.Children.map(children as IChildProps[], (child: IChildProps) => {
     const { value, icon } = child?.props;
+
+    if(typeof currValue === 'object' && currValue.includes(value)) {
+      multiSelectedValues.push({value, icon});
+    }
     return (
-      <SelectOption 
+      <SelectOption
         icon            = {icon}
         value           = {value}
         onChange        = {onChange}
         currValue       = {currValue}
         setSelectValue  = {setSelectValue}
-        checked         = {value === currValue}
+        multiValues     = {multiSelectedValues}
         template        = {child.props.children}
         closeSelect     = {() => setOpen(false)}
       />
@@ -142,7 +170,7 @@ const Select:FC<SelectProps> = ({
     <>
       <p>{label}</p>
       <div className={mainClasses.join(' ')} ref={selectRef}>
-        <div className={classes.select}>
+        <div className={classes.select} ref={selectedValueRef} >
           <CustomScroll size='micro' className={classes.scroll}>
             <div onClick={toggleSelect} className={classes['select-value']}>
               {selectValue ? selectValue : placeholder} 
@@ -161,9 +189,9 @@ const Select:FC<SelectProps> = ({
           </div>
         </div>
         <div 
-          ref           = {opRef} 
-          style         = {optionsStyles}
-          className     = {optionsClasses.join(' ')} 
+          ref                     = {opRef} 
+          style                   = {optionsStyles}
+          className               = {optionsClasses.join(' ')} 
         >
           {searchable && (
             <div  className={classes.search}>
