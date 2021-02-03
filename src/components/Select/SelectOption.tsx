@@ -6,13 +6,13 @@ import { IOption } from './Select';
 
 interface SelectOptionProps {
   value              : string,
-  currValue          : string | string[],
   setSelectValue     : Function,
   onChange           : Function,
+  closeSelect        : Function,
   multiValues       ?: IOption[]
   template          ?: ReactNode,
   icon              ?: ReactElement,
-  closeSelect: () => void,
+  currValue          : string | string[],
 }
 
 const SelectOption:FC<SelectOptionProps> = ({
@@ -46,15 +46,15 @@ const SelectOption:FC<SelectOptionProps> = ({
   let multiContent: ReactNode = null;
   if(typeof currValue === 'object') {
     multiContent = multiValues!.map((option, i: number) => {
-        return (
-          <div key={i} className={classes.multiContent}>
-            {/* if we have template, present him else icon and value */}
-            {option.temp ? option.temp : (<> {option.icon} <p> {option.value} </p> </>)}
-            <span className={classes.close} onClick={(e) => removeSelectedValue(e, option.value)}>
-              <i className='fas fa-times' />
-            </span>
-          </div>
-        );
+      return (
+        <div key={i} className={classes.multiContent}>
+          {/* if we have template, present him else icon and value */}
+          {option.temp ? option.temp : (<> {option.icon} <p> {option.value} </p> </>)}
+          <span className={classes.close} onClick={(e) => removeSelectedValue(e, option.value)}>
+            <i className='fas fa-times' />
+          </span>
+        </div>
+      );
     });
   }
 
@@ -64,6 +64,11 @@ const SelectOption:FC<SelectOptionProps> = ({
     checked = currValue === value;
   } else {
     checked = currValue.includes(value);
+  }
+
+  const optionClasses = [classes.option];
+  if(checked) {
+    optionClasses.push(classes['checked-option']);
   }
 
   // check if have default value, and set template for selectedValue
@@ -86,20 +91,20 @@ const SelectOption:FC<SelectOptionProps> = ({
   }, [currValue]);
 
   const clickHendler = () => {
-    closeSelect();  // on every choosed option we close select popup
-    if(typeof currValue !== 'object'){
+    if(typeof currValue !== 'object' && !checked){
+      closeSelect();  // on every choosed option we close select popup
       onChange(value); // set value for select 
       setSelectValue(content); // if option is not only text we set current template like a value
     }
 
     if(typeof currValue === 'object'){
-      onChange(value, true);
-      setSelectValue(multiContent);
+      // with multi select if options is alredy checked after second click will be unchecked and removed
+      !checked ? onChange(value, true) : onChange(value, true, true);
     }
   }
 
   return (
-    <div className={classes.option} onClick={() => !checked && clickHendler()} >
+    <div className={optionClasses.join(' ')} onClick={clickHendler} >
       {content}
       {checked && (
          <span className={classes.checked}>

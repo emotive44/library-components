@@ -557,7 +557,7 @@ function App() {
           onChange              = {inputChangeHandler}
         />
 
-        <div style={{ maxHeight: '10rem' }}>    
+        <div style={{ maxHeight: '10rem', minWidth: '25rem' }}>    
           <Select 
             clearable
             searchable
@@ -568,7 +568,7 @@ function App() {
             err                 = "Please select value"
             onChange            = {selectChangeHandler}
           > 
-            <Option value={'Audi'} icon={<i className="fas fa-user" />} />
+            <Option value={'Audi  Audi Audi  Audi Audi Audi AudiAudiAudiAudiAudiAudi Audi Audi   Audi Audi Audi Audi Audi Audi Audi  Audi Audi Audi Audi Audi Audi Audi'} icon={<i className="fas fa-user" />} />
             <Option value={'BMW'} icon={<i className="fas fa-user" />} />
             <Option value={'Opel'} icon={<i className="fas fa-user" />} />
             <Option value={'Mercedes'} icon={<i className="fas fa-user" />} />
@@ -590,25 +590,25 @@ function App() {
             clearable
             searchable
             optsMaxHeight       = {300}
-            label               = "Car Model"
+            label               = "Car Model Multi"
             value               = {state.multiSelect}
             placeholder         = "Select car...."
-            err                 = "Please select value"
             onChange            = {selectChangeHandler}
           > 
             <Option value={'Audi'} icon={<i className="fas fa-user" />} />
             <Option value={'BMW'} icon={<i className='fas fa-times' />} />
             <Option value={'Opel'} >
-              <div style={{display: 'flex', width: '100%'}}>
-                <span>Oe</span>
-                <small style={{background: 'red', marginLeft: '3rem'}}>Tem</small>
+              <div style={{display: 'flex', width: '100%', alignItems: 'center'}}>
+                <small
+                  style={{width: '30px', height: '30px', borderRadius: '50%', backgroundColor: 'red'}}
+                />
+                <span>User one</span>
               </div>
             </Option>
 
   
             <Option value={'Mercedes'} icon={<i className="fas fa-user" />} />
             <Option value={'Ford'} icon={<i className="fas fa-user" />} />
-            <Option value={'Renault'} icon={<i className="fas fa-user" />} /> 
           </Select>
         </div>
       </div>
@@ -652,7 +652,7 @@ function App() {
         secondsDelay          = {3}
       />
 
-      <div style={{ width: '90%', margin: '1rem auto', height: '45rem' }}>
+      <div style={{ width: '90%', margin: '10rem auto', height: '45rem' }}>
         <Carousel 
           imgData={arrayWithImgs} 
           // clickImgChange

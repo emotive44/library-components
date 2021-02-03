@@ -1,14 +1,13 @@
-.container { position: relative; height: auto; min-height: 2.5rem; max-height: 100%; display: flex; justify-content: space-between; align-items: center; border: 1px solid black; border-radius: 4px; }
-  .container .select { margin: 0.6rem; display: flex; width: 100%; }
-    .container .select .scroll { flex: 1; }
-    .container .select .select-value { width: 100%; max-height: 7rem; cursor: pointer; }
-    .container .select .icons { display: flex; }
-      .container .select .icons small { width: 1px; background: gray; margin-right: 1rem; }
-      .container .select .icons .icon { padding-right: 1rem; display: flex; align-items: center; color: gray; transition: 0.2s ease-in-out color; }
+.container { position: relative; height: auto; cursor: default;  min-height: 2.5rem; max-height: 100%; display: flex; justify-content: space-between; align-items: center; border: 1px solid black; border-radius: 4px; }
+  .container .select { margin: 0.6rem; display: flex; justify-content: space-between; width: 98%; }
+    .container .select .select-value { max-width: 70%; }
+    .container .select-value  p { white-space: nowrap; overflow: hidden; text-overflow: ellipsis;  }
+    .container .select .icons { display: flex; margin: 0 1rem; }
+      .container .select .icons small { width: 1.5px; background: gray; margin: 0 1.5rem; }
+      .container .select .icons .icon { display: flex; align-items: center; color: gray; transition: 0.2s ease-in-out color; }
         .container .select .icons .icon:hover { color: black; cursor: pointer; }
-        .container .select .icons .icon:first-child { margin-left: 2rem; }
       .container .select .icons .icon.arrow { position: relative; transition: 0.4s ease-in-out transform, 0.4s ease-in-out padding; }
-      .container .select .icons .icon.arrow.open { transform: rotate(180deg); color: black; padding-right: 0; padding-left: 1rem; }
+      .container .select .icons .icon.arrow.open { transform: rotate(180deg); color: black; }
   .container .options { position: absolute; z-index: 20; width: 100%; visibility: hidden; opacity: 0; max-height: 0; border-radius: 4px; border: 1px solid black; transition: all ease 0.6s; overflow: hidden; }
     .container .options::-webkit-scrollbar-track { border-radius: 10px; box-shadow: inset 0 0 5px grey; margin: 0 30px; }
     .container .options::-webkit-scrollbar-thumb { border-radius: 10px; background: grey; }
@@ -17,3 +16,4 @@
     .container .search-msg { width: 80%; margin: 1rem auto; text-align: center; }
   .container .options.open { visibility: visible; opacity: 1; background: white; }
 .errmsg { color: red; width: 99%; font-size: 1.3rem; margin: 0 0 0 5px; }
+.multiOptions { margin-top: 1rem; flex-wrap: wrap; padding: 0.5rem; position: relative; display: flex; }

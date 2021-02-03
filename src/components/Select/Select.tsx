@@ -3,7 +3,6 @@ import classes from './Select.module.css';
 
 import Input from '../Input/Input';
 import SelectOption from './SelectOption';
-import CustomScroll from '../CustomScroll/CustomScroll';
 
 
 export interface IOption {
@@ -49,11 +48,9 @@ const Select:FC<SelectProps> = ({
   value: currValue,
 }) => {
   const opRef = useRef(null);
-  const selectedValueRef = useRef(null);
   const selectRef = useRef(null);
   const [open, setOpen] = useState(false);
   const [optionsHeight, setOptionsHeight] = useState(0);
-  const [selectValueHeight, setSelectValueHeight] = useState(0);
   const [selectValue, setSelectValue] =  useState<ReactNode>(null);
   const [searchValue, setSearchValue] = useState('');
 
@@ -71,12 +68,14 @@ const Select:FC<SelectProps> = ({
     optionsClasses.push(classes.open);
   }
   
-  const toggleSelect = () => {
+  const toggleSelect = (e: React.MouseEvent) => {
+    e.stopPropagation();
     setOpen(prev => !prev);
   }
 
   // reset value and close a select popup
-  const clearHandler = () => {
+  const clearHandler = (e: React.MouseEvent) => {
+    e.stopPropagation();
     setSelectValue(null);
     setOpen(false);
 
@@ -98,8 +97,8 @@ const Select:FC<SelectProps> = ({
     setOptionsHeight(el.scrollHeight + 7);
   }, [searchValue]);
 
+  // close select if user click outside
   useEffect(() => {
-    // close select if user click outside
     const handleClickOutside = (e: MouseEvent) => {
       const el: any = selectRef.current;
       if (el && !el.contains(e.target)) {
@@ -113,12 +112,6 @@ const Select:FC<SelectProps> = ({
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-
-  useEffect(() => {
-    const el: any = selectedValueRef.current;
-    setSelectValueHeight(el.scrollHeight + 20);
-  }, [selectValue]);
-
 
   // dynamic styles for options contnainer
   let optionsStyles: any = { top: '30px', maxHeight: '0px' };
@@ -134,7 +127,7 @@ const Select:FC<SelectProps> = ({
 
   // if options container is smaller then maxheight we set him value else set maxheight 
   if(open) {
-    optionsStyles.top = multiple ? `${selectValueHeight}px` : '45px';
+    optionsStyles.top = '45px';
     optionsStyles.maxHeight = `${optionsHeight < optsMaxHeight! ? optionsHeight : optsMaxHeight!}px`;
   } 
 
@@ -145,9 +138,9 @@ const Select:FC<SelectProps> = ({
 
     if(typeof currValue === 'object' && currValue.includes(value)) {
       if(child.props.children) {
-        multiSelectedValues.push({value, icon, temp: child.props.children})
+        multiSelectedValues.push({ value, icon, temp: child.props.children });
       } else {
-        multiSelectedValues.push({value, icon});
+        multiSelectedValues.push({ value, icon });
       }
     }
     return (
@@ -175,12 +168,10 @@ const Select:FC<SelectProps> = ({
     <>
       <p>{label}</p>
       <div className={mainClasses.join(' ')} ref={selectRef}>
-        <div className={classes.select} ref={selectedValueRef} >
-          <CustomScroll size='micro' className={classes.scroll}>
-            <div onClick={toggleSelect} className={classes['select-value']}>
-              {selectValue ? selectValue : placeholder} 
-            </div>
-          </CustomScroll>
+        <div className={classes.select} onClick={toggleSelect} >
+          <div className={classes['select-value']}>
+              {!multiple && selectValue ? selectValue : placeholder} 
+          </div>
           <div className={classes.icons}>
             {clearable && (
               <span className={classes.icon} onClick={clearHandler}>
@@ -218,6 +209,7 @@ const Select:FC<SelectProps> = ({
         </div>
       </div>
       {err && <p className={classes.errmsg}> {err} </p>}
+      {multiple && selectValue && <div className={classes.multiOptions}> {selectValue} </div>}
     </>
   );
 }
