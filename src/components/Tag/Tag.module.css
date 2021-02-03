@@ -1,0 +1,16 @@
+.tag { display: inline-flex; align-items: center; margin: 0 0.5rem 0.5rem 0.5rem; cursor: default; font-weight: 500; font-size: 1.5rem; border-radius: 3px; color: whitesmoke; } 
+  .tag.secondary { background: #898a8b; }
+  .tag.success { background: #339e66; }
+  .tag.danger { background: #cc5058; }
+  .tag.warning { background: #ffe26b; color: black; }
+  .tag.light { background: #c5c6c7; color: black; }
+  .tag.dark { background: #272727; }
+  .tag > i, .tag > p { margin: 0.5rem; }
+  .tag .close { display: flex; align-items: center; padding: 0.2rem 1rem; border-radius: 3px; align-self: stretch; cursor: pointer; transition: 0.3s ease background-color; }
+    .tag.secondary .close:hover { background-color: #6d6e6f; }
+    .tag.success .close:hover { background-color: #287e51; }
+    .tag.danger .close:hover { background-color: #b7484f; }
+    .tag.warning .close:hover { background-color: #e5cb60; }
+    .tag.light .close:hover { background-color: #b1b2b3; }
+    .tag.dark .close:hover { background-color: #000000; } 
+    .tag .close i { font-size: smaller; }

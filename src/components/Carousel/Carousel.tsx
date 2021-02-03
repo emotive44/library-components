@@ -97,7 +97,7 @@ const Carousel: FC<CarouselProps> = ({
     footerContent = imgData.map((img, i) => {
       const styles = {
         backgroundImage: `url(${img})`,
-        opacity: `${imgIndx === i - 1 ? '1' : '0.6'}` // to show current image
+        opacity: `${imgIndx === i ? '1' : '0.6'}` // to show current image
       }
 
       return (

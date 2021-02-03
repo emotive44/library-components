@@ -24,6 +24,8 @@ import Datepicker from './components/Datepicker/Datepicker';
 import RangeSlider from './components/RangeSlider/RangeSlider';
 import Carousel from './components/Carousel/Carousel';
 import { Select, Option } from './components/Select';
+import Tag from './components/Tag/Tag';
+
 
 interface IState {
   [key: string]: any,
@@ -584,7 +586,7 @@ function App() {
         </div>
 
         
-        <div style={{ maxHeight: '10rem' }}>    
+        <div>    
           <Select
             multiple
             clearable
@@ -605,8 +607,6 @@ function App() {
                 <span>User one</span>
               </div>
             </Option>
-
-  
             <Option value={'Mercedes'} icon={<i className="fas fa-user" />} />
             <Option value={'Ford'} icon={<i className="fas fa-user" />} />
           </Select>
@@ -651,6 +651,21 @@ function App() {
         autoClose
         secondsDelay          = {3}
       />
+
+      <div className={classes.flex}>
+        <Tag type="warning" text="Some Text" closeClickCallback/>
+        <Tag type="dark" text="Some Text" closeClickCallback />
+        <Tag type="success" text="Some Text" />
+        <Tag type="light" text="Text" closeClickCallback />
+        <Tag type="danger" text="Text" icon={<i className="fas fa-user" />} closeClickCallback />
+        <Tag type="secondary" closeClickCallback> 
+          <p>ONE</p>
+          <span>Username</span>
+          <small 
+            style={{width: '25px', height: '25px', margin: '0 1rem', backgroundColor: 'red', borderRadius: '50%'}}
+          />
+         </Tag>
+      </div>
 
       <div style={{ width: '90%', margin: '10rem auto', height: '45rem' }}>
         <Carousel 

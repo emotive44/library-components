@@ -1,6 +1,7 @@
 import React, { FC, ReactElement, ReactNode, useEffect } from 'react';
 import classes from './SelectOption.module.css';
 
+import Tag from '../Tag/Tag';
 import { IOption } from './Select';
 
 
@@ -38,8 +39,7 @@ const SelectOption:FC<SelectOptionProps> = ({
   }
 
   // remove option value from selected array with options
-  const removeSelectedValue = (e: React.MouseEvent, value: string) => {
-    e.stopPropagation();
+  const removeSelectedValue = (value: string) => {
     onChange(value, true, true);
   }
 
@@ -47,13 +47,13 @@ const SelectOption:FC<SelectOptionProps> = ({
   if(typeof currValue === 'object') {
     multiContent = multiValues!.map((option, i: number) => {
       return (
-        <div key={i} className={classes.multiContent}>
-          {/* if we have template, present him else icon and value */}
-          {option.temp ? option.temp : (<> {option.icon} <p> {option.value} </p> </>)}
-          <span className={classes.close} onClick={(e) => removeSelectedValue(e, option.value)}>
-            <i className='fas fa-times' />
-          </span>
-        </div>
+        <Tag 
+          key                   = {i}
+          type                  = 'light'
+          icon                  = {option.icon}
+          text                  = {option.value}
+          closeClickCallback    = {() => removeSelectedValue(option.value)}
+        > {option.temp} </Tag>
       );
     });
   }

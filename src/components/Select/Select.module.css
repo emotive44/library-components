@@ -16,4 +16,4 @@
     .container .search-msg { width: 80%; margin: 1rem auto; text-align: center; }
   .container .options.open { visibility: visible; opacity: 1; background: white; }
 .errmsg { color: red; width: 99%; font-size: 1.3rem; margin: 0 0 0 5px; }
-.multiOptions { margin-top: 1rem; flex-wrap: wrap; padding: 0.5rem; position: relative; display: flex; }
+.multiOptions { margin-top: 1rem; flex-wrap: wrap; padding: 0.5rem; display: flex; }

@@ -40,40 +40,11 @@ const Button: FC<ButtonProps> = ({
 
 
   if (type) {
-    switch (type) {
-      case 'secondary':
-        mainClasses.push(classes.secondary);
-        break;
-      case 'success':
-        mainClasses.push(classes.success);
-        break;
-      case 'danger':
-        mainClasses.push(classes.danger);
-        break;
-      case 'warning':
-        mainClasses.push(classes.warning);
-        break;
-      case 'light':
-        mainClasses.push(classes.light);
-        break;
-      case 'dark':
-        mainClasses.push(classes.dark);
-        break;
-    }
+    mainClasses.push(classes[type]);
   }
 
   if(size) {
-    switch (size) {
-      case 'small':
-        mainClasses.push(classes.small);
-        break;
-      case 'medium':
-        mainClasses.push(classes.medium);
-        break;
-      case 'large':
-        mainClasses.push(classes.large);
-        break;
-    }
+    mainClasses.push(classes[size]);
   }
 
   if(fullWidth) {

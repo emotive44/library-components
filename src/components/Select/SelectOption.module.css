@@ -10,9 +10,3 @@
 .content { display: flex; align-items: center; }
   .content i { margin-right: 0.5rem; }
   .content p { word-break: break-word; }
-
-.multiContent { display: inline-flex; margin: 0 0.5rem 0.4rem 0; padding-left: 0.5rem; border-radius: 2px; align-items: center; background: lightgray; }
-  .multiContent p { margin: 0 0.5rem; }
-  .multiContent .close { padding: 0.2rem 0.5rem; cursor: pointer; align-self: stretch; transition: 0.3s ease background-color; }
-    .multiContent .close:hover { background-color: rgb(241, 122, 122); }
-    .multiContent .close i { font-size: small; }
