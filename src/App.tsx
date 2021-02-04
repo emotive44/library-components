@@ -29,7 +29,8 @@ import Tag from './components/Tag/Tag';
 
 interface IState {
   [key: string]: any,
-  multiSelect: string[]
+  select: any, 
+  multiSelect: any[]
 }
 
 function App() {
@@ -108,7 +109,7 @@ function App() {
     setRadioValue(value);
   }
 
-  const selectChangeHandler = (value: string, multi?: false, remove?: false) => {
+  const selectChangeHandler = (value: any, multi?: false, remove?: false) => {
     // reset values for multiselect
     if(multi && value === '') {
       setState(prev => ({
@@ -120,10 +121,17 @@ function App() {
 
     // remove selected values from multi select
     if(multi && remove) {
-      setState(prev => ({
-        ...prev,
-        multiSelect: prev.multiSelect.filter(selected => selected !== value),
-      }));
+      if(typeof value !== 'object'){
+        setState(prev => ({
+          ...prev,
+          multiSelect: prev.multiSelect.filter(selected => selected !== value),
+        }));
+      } else {
+        setState(prev => ({
+          ...prev,
+          multiSelect: prev.multiSelect.filter(selected => selected.id !== value.id),
+        }));
+      }
       return;
     }
 
@@ -567,11 +575,26 @@ function App() {
             err                 = "Please select value"
             onChange            = {selectChangeHandler}
           > 
-            <Option value={'Audi  Audi Audi  Audi Audi Audi AudiAudiAudiAudiAudiAudi Audi Audi   Audi Audi Audi Audi Audi Audi Audi  Audi Audi Audi Audi Audi Audi Audi'} icon={<i className="fas fa-user" />} />
-            <Option value={'BMW'} icon={<i className="fas fa-user" />} />
-            <Option value={'Opel'} icon={<i className="fas fa-user" />} />
-            <Option value={'Mercedes'} icon={<i className="fas fa-user" />} />
-            <Option value={'Ford'}/>
+            <Option 
+              label             = {'Label Option Audi'} 
+              icon              = {<i className="fas fa-user" />} 
+              value             = {{car: 'Audi', model: 'A4', id: 1}} 
+            />
+            <Option 
+              label             = {'Label Option BMW'} 
+              icon              = {<i className="fas fa-user" />} 
+              value             = {{car: 'BMW', model: '330', id: 2}} 
+            />
+            <Option 
+              label             = {'Label Option Opel'} 
+              icon              = {<i className="fas fa-user" />}
+              value             = {{car: 'Opel', model: 'Astra', id: 3}} 
+            />
+            <Option 
+              label             = {'Label Option Mercedes'} 
+              icon              = {<i className="fas fa-user" />} 
+              value             = {{car: 'Mercedes', model: 'C200', id: 4}} 
+            />
             <Option value={'Renault'}> 
               <div style={{ display: 'flex', width: '100%', justifyContent: 'space-around' }}>
                 <span>Custom Template</span>
@@ -589,14 +612,22 @@ function App() {
             clearable
             searchable
             optsMaxHeight       = {300}
+            placeholder         = "Select car...."
             label               = "Car Model Multi"
             value               = {state.multiSelect}
-            placeholder         = "Select car...."
             onChange            = {selectChangeHandler}
           > 
-            <Option value={'Audi'} icon={<i className="fas fa-user" />} />
-            <Option value={'BMW'} icon={<i className='fas fa-times' />} />
-            <Option value={'Opel'} >
+            <Option 
+              label             = {'Audi!'} 
+              icon              = {<i className="fas fa-user" />} 
+              value             = {{car: 'Audi', model: 'A4', id: 1}} 
+            />
+            <Option 
+              label             = {'BMW!'} 
+              icon              = {<i className='fas fa-times' />} 
+              value             = {{car: 'BMW', model: '330', id: 2}} 
+            />
+            <Option value={{car: 'Opel', model: 'Astra', id: 3}} label={'Opel!'} >
               <div style={{display: 'flex', width: '100%', alignItems: 'center'}}>
                 <small
                   style={{width: '30px', height: '30px', borderRadius: '50%', backgroundColor: 'red'}}
@@ -604,8 +635,11 @@ function App() {
                 <span>User one</span>
               </div>
             </Option>
-            <Option value={'Mercedes'} icon={<i className="fas fa-user" />} />
-            <Option value={'Ford'} icon={<i className="fas fa-user" />} />
+            <Option 
+              label             = {'Mercedes!'} 
+              icon              = {<i className="fas fa-user" />}
+              value             = {{car: 'Mercedes', model: 'C200', id: 4}} 
+            />
           </Select>
         </div>
       </div>

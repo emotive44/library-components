@@ -6,21 +6,23 @@ import SelectOption from './SelectOption';
 
 
 export interface IOption {
-  value: string, 
-  icon: ReactNode,
-  temp?: ReactNode,
+  value                : any, 
+  label               ?: string,
+  temp                ?: ReactNode,
+  icon                 : ReactNode,
 }
 
 interface IChildProps {
   props: {
-    value              : string
+    value              : any
+    label             ?: string,
     icon              ?: ReactElement,
     children           : React.ReactNode,
   },
 }
 
 interface SelectProps {
-  value                : string | string[], // value, which will send to server
+  value                : any, // value, which will send to server
   optsMaxHeight        : number,
   err                 ?: string,
   label               ?: string,
@@ -134,19 +136,27 @@ const Select:FC<SelectProps> = ({
   let multiSelectedValues: IOption[] = [];
   // create Options for select
   let optionsContent = React.Children.map(children as IChildProps[], (child: IChildProps) => {
-    const { value, icon } = child?.props;
+    const { value, icon, label } = child?.props;
 
-    if(typeof currValue === 'object' && currValue.includes(value)) {
-      if(child.props.children) {
-        multiSelectedValues.push({ value, icon, temp: child.props.children });
-      } else {
-        multiSelectedValues.push({ value, icon });
+    if(Array.isArray(currValue)) {
+      if(typeof value !== 'object' && currValue.includes(value) ) {
+        multiSelectedValues.push({ value, icon, temp: child.props.children, label: label });
+      }
+
+      if(typeof value === 'object') {
+        currValue.forEach(curr => {
+          if(JSON.stringify(curr) === JSON.stringify(value)) {
+            multiSelectedValues.push({ value, icon, temp: child.props.children, label: label });
+          }
+        });
       }
     }
+
     return (
       <SelectOption
         icon            = {icon}
         value           = {value}
+        label           = {label}
         onChange        = {onChange}
         currValue       = {currValue}
         setSelectValue  = {setSelectValue}
@@ -160,7 +170,7 @@ const Select:FC<SelectProps> = ({
   // check if user put in search value, we look for all options which start with this search value
   if(searchValue !== '') {
     optionsContent = optionsContent.filter(
-      child => child.props.value.toLowerCase().startsWith(searchValue.toLowerCase())
+      child => child.props.label?.toLowerCase().startsWith(searchValue.toLowerCase())
     );
   }
 
