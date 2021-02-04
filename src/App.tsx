@@ -377,14 +377,11 @@ function App() {
           <p>Content</p>
         </InfoBox>
 
-        <Divider title="Title" basicDivider />
+        <Divider title="Title" />
 
-        <Divider icon={<i className="fas fa-user" />} basicDivider />
+        <Divider icon={<i className="fas fa-user" />} horizontal/>
 
-        <Divider 
-          basicDivider 
-          imgSrc              = "https://static.thenounproject.com/png/1070843-200.png"
-        />
+        <p></p>
 
         <Tooltip message="Tooltip message Tooltip message">
           <p>Tooltip top</p>
@@ -678,14 +675,6 @@ function App() {
       <Button fullWidth>
         Full width button
       </Button>
-
-      <div style={{ margin: '3rem 0' }}>
-        <Divider 
-          basicDivider 
-          longerLines
-          imgSrc              = "https://cdn.dribbble.com/users/46067/screenshots/446200/hr.png"
-        />
-      </div>
 
       <NotFound 
         title                 = "Not Found Page" 

@@ -2,44 +2,34 @@ import React, { FC, ReactElement } from 'react';
 import classes from './Divider.module.css';
 
 interface DividerProps {
-  imgSrc          ?: string;
-  icon            ?: ReactElement;
   title           ?: string,
-  longerLines     ?: boolean, // extension of width on lines
-  basicDivider    ?: boolean, // if you want only title 
+  horizontal      ?: boolean,
+  img             ?: string,
+  icon            ?: ReactElement;
 }
 
 const Divider: FC<DividerProps> = ({ 
   icon,
   title,
-  imgSrc,
-  longerLines,
-  basicDivider,
+  img,
+  horizontal,
 }) =>  {
-
-  if(basicDivider && (title || icon)) {
-    return (
-      <h3 className={classes.divider}>
-        {title}
-        {icon}
-      </h3>
-    )
+  const dividerClasses = [classes.divider];
+  if(horizontal) {
+    dividerClasses.push(classes.horizontal);
   }
 
-  const dividerImgClasses: string[] = [classes.dividerImg];
-  if(longerLines) {
-    dividerImgClasses.push(classes.longer);
-  }
-
-  if(imgSrc) {
-    return (
-      <div className={dividerImgClasses.join(' ')}>
-        <img src={imgSrc} alt="" />
-      </div>
-    )
-  }
-
-  return null;
+  return (
+    <h3 className={dividerClasses.join(' ')}>
+      <small className={classes.left} />
+      <span>
+        {title && title}
+        {icon && icon}
+        {img && <img src={img}  alt="" />}
+      </span>
+      <small className={classes.right} />
+    </h3>
+  );
 }
 
 export default Divider;
