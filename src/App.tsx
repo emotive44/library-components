@@ -25,6 +25,7 @@ import RangeSlider from './components/RangeSlider/RangeSlider';
 import Carousel from './components/Carousel/Carousel';
 import { Select, Option } from './components/Select';
 import Tag from './components/Tag/Tag';
+import PhoneInput from './components/PhoneInput/PhoneInput';
 
 
 interface IState {
@@ -642,6 +643,8 @@ function App() {
             />
           </Select>
         </div>
+
+        <PhoneInput />
       </div>
 
       {/* <div style={{ width: '70%', margin: '1rem auto', height: '30rem'}} >
