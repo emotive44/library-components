@@ -26,6 +26,7 @@ interface InputProps {
   className       ?: string;
   placeHolder     ?: string;
   labelInside     ?: boolean;
+  maxLength       ?: number;
   defaultValue    ?: string | number;
   // sizes
   largeInput      ?: boolean;
@@ -42,6 +43,7 @@ const Input: FC<InputProps> = ({
   label,
   pattern,
   value,
+  maxLength,
   callbackChange,
   leftIcon,
   readonly,
@@ -129,6 +131,7 @@ const Input: FC<InputProps> = ({
           readOnly      = {readonly}
           required      = {required}
           disabled      = {disabled}
+          maxLength     = {maxLength}
           type          = {showPass ? "text" : type}
           className     = {inputClasses.join(' ')}
           placeholder   = {label ? "" : placeHolder}

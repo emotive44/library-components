@@ -15,6 +15,7 @@ interface SelectOptionProps {
   template          ?: ReactNode,
   icon              ?: ReactElement,
   currValue          : any,
+  customTempValue   ?: ReactNode,
 }
 
 const SelectOption:FC<SelectOptionProps> = ({
@@ -27,6 +28,7 @@ const SelectOption:FC<SelectOptionProps> = ({
   multiValues,
   closeSelect,
   setSelectValue,
+  customTempValue,
 }) => {
   let content: ReactNode = null;
   if(template) {
@@ -91,13 +93,13 @@ const SelectOption:FC<SelectOptionProps> = ({
   useEffect(() => {
     // single select and value string
     if(typeof currValue === 'string' && currValue === value) {
-      setSelectValue(content);
+      setSelectValue(customTempValue ? customTempValue : content);
       return;
     } 
 
     // single select and value object
     if(typeof value === 'object' && JSON.stringify(currValue) === JSON.stringify(value)) {
-      setSelectValue(content);
+      setSelectValue(customTempValue ? customTempValue : content);
       return;
     }
 
@@ -118,7 +120,7 @@ const SelectOption:FC<SelectOptionProps> = ({
     if(!Array.isArray(currValue) && !checked) {
       closeSelect();  // on every choosed option we close select popup
       onChange(value); // set value for select 
-      setSelectValue(content); // if option is not only text we set current template like a value
+      setSelectValue(customTempValue ? customTempValue : content); // if option is not only text we set current template like a value
     }
 
     if(Array.isArray(currValue)){

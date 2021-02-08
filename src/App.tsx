@@ -51,6 +51,7 @@ function App() {
     secondEmail : '',
     range       : '',
     select      : '',
+    phone       : '',
     multiSelect : [],
     male        : false,
     female      : false,
@@ -80,6 +81,38 @@ function App() {
         ...prev,
         [name] : value,
     }));
+  }
+
+  const phoneChangeHandler = (e?: React.ChangeEvent<HTMLInputElement>, prefix?: string, phoneName?: string) => {
+    if(e && e.target) {
+      const { value, name } = e.target;
+
+      // forbid user delete a prefix
+      if(value.length < prefix?.length!) {
+        setState(prev => ({
+          ...prev,
+          [name]: prefix,
+        }));
+
+        return;
+      }
+
+      // const regex = new RegExp(`^[${prefix}]+[0-9]{${prefix?.length! + 8}}`);
+      // if(!regex.test(value)) {
+      //   setErr('please enter a valid number')
+      // }
+
+      setState(prev => ({
+        ...prev,
+        [name] : value,
+      }));
+
+    } else {
+      setState(prev => ({
+        ...prev,
+        [phoneName!] : prefix,
+      }));
+    }
   }
 
   const dateChangeHandler = (date: string, name: string) => {
@@ -644,7 +677,13 @@ function App() {
           </Select>
         </div>
 
-        <PhoneInput />
+        <PhoneInput 
+          name                  = 'phone'
+          label                 = 'Your Phone'
+          value                 = {state.phone}
+          callbackChange        = {phoneChangeHandler}
+          err                   = 'Plese enter correct number'
+        />
       </div>
 
       {/* <div style={{ width: '70%', margin: '1rem auto', height: '30rem'}} >

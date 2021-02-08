@@ -17,7 +17,8 @@ interface IChildProps {
     value              : any
     label             ?: string,
     icon              ?: ReactElement,
-    children           : React.ReactNode,
+    children           : ReactNode,
+    customTempValue   ?: ReactNode
   },
 }
 
@@ -163,6 +164,7 @@ const Select:FC<SelectProps> = ({
         multiValues     = {multiSelectedValues}
         template        = {child.props.children}
         closeSelect     = {() => setOpen(false)}
+        customTempValue = {child.props.customTempValue}
       />
     );
   });

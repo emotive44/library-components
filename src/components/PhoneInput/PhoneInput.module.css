@@ -1,0 +1,9 @@
+.phone-input { display: flex; }
+  .phone-input .select { width: 9rem; height: 3rem; border-radius: 0; border-bottom-left-radius: 3px; border-top-left-radius: 3px; }
+    .phone-input .select .custom-temp-opts { width: 83%; display: flex; justify-content: space-between; align-items: center; }
+      .phone-input .select .custom-temp-opts img { width: 26px; height: 16px; margin-right: 0.5rem; }
+      .phone-input .select .custom-temp-opts > span { text-align: center; margin-right: 0.5rem; }
+  .phone-input .input { border: 1px solid black; border-left: 0; padding-left: 1rem; height: 3rem; border-top-right-radius: 3px; border-bottom-right-radius: 3px; }
+.errmsg { color: red; width: 99%; font-size: 1.3rem; margin: 0 0 0 5px; }
+
+.country-flags { width: 26px; height: 16px; margin-right: -1rem; margin-bottom: -0.1rem; }

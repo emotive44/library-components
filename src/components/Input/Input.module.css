@@ -12,7 +12,7 @@
   .input.large.inside .label.top { font-size: 1.1rem; left: 0.5rem; bottom: 1.5rem; }
   .input.large.inside .label.in { left: 3.5rem; }
 
-  .icon { top: 0.19rem; margin-left: -0.02rem; width: 3rem; right: 0.09rem; height: 89%; padding: 0 0.5rem; position: absolute; background: lightgrey; display: flex; align-items: center; }
+  .icon { top: 0.19rem;  margin-left: -0.015rem; width: 3rem; right: 0.09rem; height: 89%; padding: 0 0.5rem; position: absolute; background: lightgrey; display: flex; align-items: center; }
     .icon.left { left: 0.09rem; }
     .icon.left + .label { left: 3.5rem; }
     .icon.left + input, 

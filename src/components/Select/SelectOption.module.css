@@ -4,7 +4,7 @@
   .option:hover { background-color: lightgray; }
   .option .content { display: flex; flex: 1; align-items: center; }
     .option .content i { margin-right: 1rem; }
-  .option .checked { margin: 0 1rem; }
+  .option .checked { margin: 0 1rem; flex: 1; text-align: right; }
     .option .checked i { font-size: small; }
 
 .content { display: flex; align-items: center; }

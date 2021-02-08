@@ -1,10 +1,11 @@
-import React, { FC, ReactElement } from 'react';
+import React, { FC, ReactElement, ReactNode } from 'react';
 
 
 interface OptionProps {
-  value    : any,
-  label   ?: string,
-  icon    ?: ReactElement
+  value            : any,
+  label           ?: string,
+  customTempValue ?: ReactNode,
+  icon            ?: ReactElement,
 }
 
 const Option:FC<OptionProps> = ({ children }) => {
